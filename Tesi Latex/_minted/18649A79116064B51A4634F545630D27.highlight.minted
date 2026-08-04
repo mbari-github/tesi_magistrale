@@ -1,0 +1,6 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+
+\PYG{+w}{    }ros2\PYG{+w}{ }service\PYG{+w}{ }call\PYG{+w}{ }/bridge/set\PYGZus{}mode\PYG{+w}{ }\PYG{l+s+se}{\PYGZbs{}}
+\PYG{+w}{            }exoskeletron\PYGZus{}safety\PYGZus{}msgs/srv/SetMode\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}\PYGZob{}mode: \PYGZsq{}stop\PYGZsq{}\PYGZcb{}\PYGZdq{}}
+
+\end{MintedVerbatim}

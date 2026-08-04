@@ -1,0 +1,13 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+
+\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n+nf}{main}\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{argc}\PYG{p}{,}\PYG{+w}{ }\PYG{k+kt}{char}\PYG{+w}{ }\PYG{o}{**}\PYG{+w}{ }\PYG{n}{argv}\PYG{p}{)}
+\PYG{+w}{    }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{rclcpp}\PYG{o}{::}\PYG{n}{init}\PYG{p}{(}\PYG{n}{argc}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{argv}\PYG{p}{);}
+\PYG{+w}{    }\PYG{k}{auto}\PYG{+w}{ }\PYG{n}{node}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{std}\PYG{o}{::}\PYG{n}{make\PYGZus{}shared}\PYG{o}{\PYGZlt{}}\PYG{n}{functional\PYGZus{}safety}\PYG{o}{::}\PYG{n}{StateMachine}\PYG{o}{\PYGZgt{}}\PYG{p}{();}
+\PYG{+w}{    }\PYG{n}{node}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{initialize}\PYG{p}{();}
+\PYG{+w}{    }\PYG{n}{rclcpp}\PYG{o}{::}\PYG{n}{spin}\PYG{p}{(}\PYG{n}{node}\PYG{p}{);}
+\PYG{+w}{    }\PYG{n}{rclcpp}\PYG{o}{::}\PYG{n}{shutdown}\PYG{p}{();}
+\PYG{+w}{    }\PYG{k}{return}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+
+\end{MintedVerbatim}

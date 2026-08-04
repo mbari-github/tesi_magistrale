@@ -1,0 +1,20 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+
+\PYG{k}{switch}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{entry\PYGZus{}level}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{  }\PYG{k}{case}\PYG{+w}{ }\PYG{n+no}{FaultResponseLevel}\PYG{o}{::}\PYG{n+no}{SAFE\PYGZus{}STOP}\PYG{p}{:}
+\PYG{+w}{    }\PYG{n}{request\PYGZus{}safe\PYGZus{}stop}\PYG{p}{();}
+\PYG{+w}{    }\PYG{n}{last\PYGZus{}requested\PYGZus{}level\PYGZus{}}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{FaultResponseLevel}\PYG{o}{::}\PYG{n}{SAFE\PYGZus{}STOP}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k}{break}\PYG{p}{;}
+\PYG{+w}{  }\PYG{k}{case}\PYG{+w}{ }\PYG{n+no}{FaultResponseLevel}\PYG{o}{::}\PYG{n+no}{TORQUE\PYGZus{}LIMIT}\PYG{p}{:}
+\PYG{+w}{    }\PYG{n}{request\PYGZus{}torque\PYGZus{}limit\PYGZus{}mode}\PYG{p}{();}
+\PYG{+w}{    }\PYG{n}{last\PYGZus{}requested\PYGZus{}level\PYGZus{}}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{FaultResponseLevel}\PYG{o}{::}\PYG{n}{TORQUE\PYGZus{}LIMIT}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k}{break}\PYG{p}{;}
+\PYG{+w}{  }\PYG{k}{case}\PYG{+w}{ }\PYG{n+no}{FaultResponseLevel}\PYG{o}{::}\PYG{n+no}{COMPLIANT}\PYG{p}{:}
+\PYG{+w}{    }\PYG{n}{request\PYGZus{}compliant\PYGZus{}mode}\PYG{p}{();}
+\PYG{+w}{    }\PYG{n}{last\PYGZus{}requested\PYGZus{}level\PYGZus{}}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{FaultResponseLevel}\PYG{o}{::}\PYG{n}{COMPLIANT}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k}{break}\PYG{p}{;}
+\PYG{+w}{  }\PYG{k}{default}\PYG{o}{:}
+\PYG{+w}{    }\PYG{k}{break}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+
+\end{MintedVerbatim}

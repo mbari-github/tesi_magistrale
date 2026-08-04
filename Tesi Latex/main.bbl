@@ -1,0 +1,61 @@
+\begin{thebibliography}{1}
+
+\bibitem{Bartalucci2024_Exoskeleton}
+Lorenzo Bartalucci, Chiara Brogi, Alessandro Bucci, Alberto Topini, Andrea
+  Della~Valle, Nicola Secciani, Alessandro Ridolfi, and Benedetto Allotta.
+\newblock A kinaesthetic hand exoskeleton system toward robot-augmented
+  rehabilitation therapies in the health 4.0 era.
+\newblock In {\em Proceedings of the 2023 10th International Conference on
+  Bioinformatics Research and Applications}, ICBRA '23, page 135–142, New
+  York, NY, USA, 2024. Association for Computing Machinery.
+
+\bibitem{carpentier2019pinocchio}
+Justin Carpentier, Guilhem Saurel, Gabriele Buondonno, Joseph Mirabel, Florent
+  Lamiraux, Olivier Stasse, and Nicolas Mansard.
+\newblock The pinocchio c++ library -- a fast and flexible implementation of
+  rigid body dynamics algorithms and their analytical derivatives.
+\newblock In {\em IEEE International Symposium on System Integrations (SII)},
+  2019.
+
+\bibitem{GMO_FaultDetection}
+A.~De~Luca and R.~Mattone.
+\newblock Generalized momentum observers for actuator fault detection.
+\newblock In {\em 2003 IEEE International Conference on Robotics and Automation
+  (Cat. No.03CH37422)}, volume~1, pages 634--639 vol.1, 2003.
+
+\bibitem{fault_detection_basic_info}
+Xiaomin Fan, Wei Zhang, and Xiaohang Li.
+\newblock Fault detection and isolation for uncertain systems based on unknown
+  input set-membership observer.
+\newblock {\em Circuits, Systems, and Signal Processing}, 41(8):4324--4346,
+  2022.
+
+\bibitem{featherstone2008rigid}
+Roy Featherstone.
+\newblock {\em Rigid body dynamics algorithms}.
+\newblock Springer, 2008.
+
+\bibitem{FaultDiagnosisIsermann}
+Rolf Isermann.
+\newblock {\em Fault-diagnosis applications: model-based condition monitoring:
+  actuators, drives, machinery, plants, sensors, and fault-tolerant systems}.
+\newblock Springer Science \& Business Media, 2011.
+
+\bibitem{Luenberger1964_Observing}
+David~G. Luenberger.
+\newblock Observing the state of a linear system.
+\newblock volume~8, pages 74--80, 1964.
+
+\bibitem{ACDC4Robot}
+Nuofan Qiu, Chaoyang Song, and Fang Wan.
+\newblock Describing robots from design to learning: Towards an interactive
+  lifecycle representation of robots.
+\newblock In {\em 2024 International Conference on Advanced Robotics and
+  Mechatronics (ICARM)}, pages 1081--1086, 2024.
+
+\bibitem{shabana2009computational}
+Ahmed~A Shabana.
+\newblock {\em Computational dynamics}.
+\newblock John Wiley \& Sons, 2009.
+
+\end{thebibliography}

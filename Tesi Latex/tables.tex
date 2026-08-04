@@ -1,0 +1,368 @@
+% =====================================================================
+% APPENDIX A — DIGITAL TWIN PARAMETERS
+% =====================================================================
+% Requires \usepackage{ltablex} in the preamble for page-breaking tables.
+
+\appendix
+\chapter{Digital Twin Parameters}
+\label{app:parameters}
+
+This appendix provides a consolidated reference for all configuration parameters of the ROS 2 Digital Twin developed in this thesis. The parameters are grouped by subsystem and correspond to the YAML
+configuration files (\texttt{dynamics\_params.yaml}, \texttt{exo\_bridge\_params.yaml}, \texttt{safety\_params.yaml}, and \texttt{observer\_params.yaml}) located in the \texttt{exoskeletron\_bringup/config} directory of the workspace, as well as to the parameters declared directly by the \texttt{admittance\_controller} and \newline \texttt{trajectory\_controller} nodes. The values reported in the tables are those used for the simulation experiments documented in Chapters~3--6.
+\newline
+\null 
+\newline
+
+% Local column type: left-aligned, line-wrapping X column
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+
+% ---------------------------------------------------------------------
+% A.1 — DYNAMIC PLANT
+% ---------------------------------------------------------------------
+\section{Dynamic Plant Parameters}
+\label{app:params:dynamics}
+
+Table~\ref{tab:params_dynamics} reports the parameters of the reduced-order dynamic plant implemented in the \texttt{exoskeletron\_dynamics} package (Chapter~3). These parameters configure the friction model on the reduced coordinate, the kinematic limits, the closure solver, and the end-stop handling logic.
+
+\small
+\begin{tabularx}{\textwidth}{@{}l L l r@{}}
+\caption{Dynamic plant parameters (\texttt{dynamics\_params.yaml}).}
+\label{tab:params_dynamics}\\
+\hline
+\textbf{Parameter} & \textbf{Description} & \textbf{Unit} & \textbf{Value} \\
+\hline
+\endfirsthead
+\hline
+\textbf{Parameter} & \textbf{Description} & \textbf{Unit} & \textbf{Value} \\
+\hline
+\endhead
+\multicolumn{4}{@{}l}{\textit{Friction model on the reduced coordinate}} \\
+\texttt{fric\_visc}      & Viscous friction coefficient        & N\,m\,s/rad & $2.0$   \\
+\texttt{fric\_coul}      & Coulomb friction torque             & N\,m        & $2.0$   \\
+\texttt{fric\_eps}       & $\tanh$ smoothing threshold         & rad/s       & $0.005$ \\
+\texttt{damping\_theta}  & Additional linear damping           & N\,m\,s/rad & $1.0$   \\
+\hline
+\multicolumn{4}{@{}l}{\textit{Inertia and kinematic limits}} \\
+\texttt{motor\_inertia}  & Motor reflected inertia $J_m$       & kg\,m$^2$   & $0.1$   \\
+\texttt{max\_theta\_dot} & Maximum crank angular velocity      & rad/s       & $10.0$  \\
+\texttt{max\_theta\_ddot}& Maximum crank angular acceleration  & rad/s$^2$   & $400.0$ \\
+\texttt{theta\_min}      & Lower bound on crank angle          & rad         & $-0.763$  \\
+\texttt{theta\_max}      & Upper bound on crank angle          & rad         & $0.096$  \\
+\hline
+\multicolumn{4}{@{}l}{\textit{Loop-closure solver}} \\
+\texttt{closure\_tol}    & Constraint residual tolerance       & m  & $10^{-5}$ \\
+\texttt{max\_nfev}       & Maximum function evaluations per step & -- & $150$   \\
+\texttt{denom\_min}      & Numerical safeguard on denominators & -- & $10^{-7}$ \\
+\hline
+\multicolumn{4}{@{}l}{\textit{End-stop / limit-hold logic}} \\
+\texttt{limit\_hold}              & Enable limit-hold state machine & bool & true \\
+\texttt{limit\_release\_tau}      & Release torque threshold        & N\,m & $0.02$ \\
+\texttt{limit\_backoff\_step}     & Back-off step size              & rad  & $0.003$\\
+\texttt{limit\_backoff\_tries}    & Maximum back-off attempts       & --   & $6$ \\
+\texttt{limit\_use\_theta\_bounds}& Apply hard $\theta$ bounds      & bool & true \\
+\hline
+\multicolumn{4}{@{}l}{\textit{External wrench input}} \\
+\texttt{external\_wrench\_enable} & Enable external wrench injection  & bool & true \\
+\texttt{external\_wrench\_frame}  & Application frame                 & --   & \texttt{frame\_CE\_end\_2} \\
+\texttt{external\_wrench\_scale}  & Scaling factor on the input wrench& --   & $1.0$ \\
+\hline
+\end{tabularx}
+\normalsize
+
+% ---------------------------------------------------------------------
+% A.2 — PASSIVE FINGER MODEL
+% ---------------------------------------------------------------------
+\section{Passive Finger Model Parameters}
+\label{app:params:passive}
+
+Table~\ref{tab:params_passive} lists the parameters of the Fung-type exponential stiffness model used to represent the passive biomechanical torques at the metacarpophalangeal (MCF) and proximal interphalangeal (IFP) joints. The same parameters are mirrored on the observer node so that the model used by the Luenberger and momentum observers remains consistent with the plant.
+
+\small
+\begin{tabularx}{\textwidth}{@{}l L l r@{}}
+\caption{Passive finger model parameters
+(\texttt{dynamics\_params.yaml}, section \texttt{passive}).}
+\label{tab:params_passive}\\
+\hline
+\textbf{Parameter} & \textbf{Description} & \textbf{Unit} & \textbf{Value} \\
+\hline
+\endfirsthead
+\hline
+\textbf{Parameter} & \textbf{Description} & \textbf{Unit} & \textbf{Value} \\
+\hline
+\endhead
+\texttt{passive\_enable}   & Enable passive torque computation    & bool     & true   \\
+\texttt{passive\_K\_MAX}   & Saturation of the effective stiffness& N\,m/rad & $5.0$  \\
+\texttt{passive\_exp\_clip}& Exponent argument clipping           & --       & $12.0$ \\
+\hline
+\multicolumn{4}{@{}l}{\textit{Metacarpophalangeal joint (MCF)}} \\
+\texttt{K0\_MCF}    & Nominal stiffness $K_{0,\mathrm{MCF}}$     & N\,m/rad    & $0.03$ \\
+\texttt{alpha\_MCF} & Exponential gain $\alpha_{\mathrm{MCF}}$   & 1/rad       & $4.0$  \\
+\texttt{B\_MCF}     & Viscous coefficient $B_{\mathrm{MCF}}$     & N\,m\,s/rad & $0.01$ \\
+\texttt{rest\_MCF}  & Rest configuration $q_{\mathrm{MCF},rest}$ & rad         & $-0.3$ \\
+\hline
+\multicolumn{4}{@{}l}{\textit{Proximal interphalangeal joint (IFP)}} \\
+\texttt{K0\_IFP}    & Nominal stiffness $K_{0,\mathrm{IFP}}$     & N\,m/rad    & $0.03$ \\
+\texttt{alpha\_IFP} & Exponential gain $\alpha_{\mathrm{IFP}}$   & 1/rad       & $4.0$  \\
+\texttt{B\_IFP}     & Viscous coefficient $B_{\mathrm{IFP}}$     & N\,m\,s/rad & $0.01$ \\
+\texttt{rest\_IFP}  & Rest configuration $q_{\mathrm{IFP},rest}$ & rad         & $-0.5$ \\
+\hline
+\multicolumn{4}{@{}l}{\textit{Soft bound on the medial joint}} \\
+\texttt{medial\_soft\_enable}& Enable soft constraint on the medial joint & bool & true \\
+\texttt{medial\_soft\_lower} & Lower soft bound                           & rad  & $-2.2$ \\
+\texttt{medial\_soft\_upper} & Upper soft bound                           & rad  & $0.0$ \\
+\texttt{medial\_soft\_weight}& Penalty weight                             & --   & $1.0$ \\
+\hline
+\end{tabularx}
+\normalsize
+
+% ---------------------------------------------------------------------
+% A.3 — ADMITTANCE CONTROLLER (OUTER LOOP)
+% ---------------------------------------------------------------------
+\section{Admittance Controller Parameters}
+\label{app:params:admittance}
+
+Table~\ref{tab:params_admittance} reports the parameters of the outer-loop admittance controller described in Chapter~4. The virtual inertia, damping, and stiffness shape the perceived compliance of the device and are independent of the physical inertia of the mechanism.
+
+\small
+\begin{tabularx}{\textwidth}{@{}l L l r@{}}
+\caption{Admittance controller parameters
+(\texttt{admittance\_controller} node).}
+\label{tab:params_admittance}\\
+\hline
+\textbf{Parameter} & \textbf{Description} & \textbf{Unit} & \textbf{Value} \\
+\hline
+\endfirsthead
+\hline
+\textbf{Parameter} & \textbf{Description} & \textbf{Unit} & \textbf{Value} \\
+\hline
+\endhead
+\texttt{joint\_name}     & Actuated joint name                  & --           & \texttt{rev\_crank} \\
+\texttt{M\_virt}         & Virtual inertia $M_v$                & kg\,m$^2$    & $0.5$   \\
+\texttt{D\_virt}         & Virtual damping $D_v$                & N\,m\,s/rad  & $5.0$   \\
+\texttt{K\_virt}         & Virtual stiffness $K_v$              & N\,m/rad     & $2.0$   \\
+\texttt{theta\_eq}       & Equilibrium position $\theta_{eq}$   & rad          & $0.0$   \\
+\texttt{force\_deadband} & Force deadband $\delta$              & N\,m         & $0.0$   \\
+\texttt{theta\_ref\_min} & Lower clamp on $\theta_v$            & rad          & $-0.76$  \\
+\texttt{theta\_ref\_max} & Upper clamp on $\theta_v$            & rad          & $+0.09$  \\
+\texttt{theta\_dot\_max} & Clamp on virtual velocity            & rad/s        & $5.0$   \\
+\texttt{publish\_rate}   & Control loop frequency               & Hz           & $200.0$ \\
+\texttt{init\_from\_js}  & Initialise $\theta_v$ from feedback  & bool         & true    \\
+\hline
+\end{tabularx}
+\normalsize
+
+% ---------------------------------------------------------------------
+% A.4 — TRAJECTORY CONTROLLER (INNER LOOP)
+% ---------------------------------------------------------------------
+\newpage
+\section{Trajectory Controller Parameters}
+\label{app:params:trajectory}
+
+Table~\ref{tab:params_trajectory} reports the parameters of the inner-loop PD plus feed-forward trajectory controller described in Chapter~4. The friction-compensation parameters are intentionally aligned with the corresponding entries of the plant in Table~\ref{tab:params_dynamics}.
+
+\small
+\begin{tabularx}{\textwidth}{@{}l L l r@{}}
+\caption{Trajectory controller parameters
+(\texttt{trajectory\_controller} node).}
+\label{tab:params_trajectory}\\
+\hline
+\textbf{Parameter} & \textbf{Description} & \textbf{Unit} & \textbf{Value} \\
+\hline
+\endfirsthead
+\hline
+\textbf{Parameter} & \textbf{Description} & \textbf{Unit} & \textbf{Value} \\
+\hline
+\endhead
+\texttt{joint\_name}     & Controlled joint name                & --           & \texttt{rev\_crank} \\
+\texttt{Kp}              & Proportional gain $K_p$              & N\,m/rad     & $50.0$  \\
+\texttt{Kd}              & Derivative gain $K_d$                & N\,m\,s/rad  & $5.0$   \\
+\texttt{use\_feedforward}& Enable model-based feed-forward      & bool         & true    \\
+\texttt{tau\_max}        & Saturation on commanded torque       & N\,m         & $10.0$  \\
+\texttt{publish\_rate}   & Control loop frequency               & Hz           & $200.0$ \\
+\texttt{fric\_visc}      & FF viscous friction compensation     & N\,m\,s/rad  & $2.0$   \\
+\texttt{damping\_theta}  & FF additional damping compensation   & N\,m\,s/rad  & $1.0$   \\
+\hline
+\end{tabularx}
+\normalsize
+
+% ---------------------------------------------------------------------
+% A.5 — EXOBRIDGE (ENFORCEMENT LAYER)
+% ---------------------------------------------------------------------
+\section{ExoBridge Parameters}
+\label{app:params:bridge}
+
+Table~\ref{tab:params_bridge} reports the parameters of the \texttt{ExoBridge} safety enforcement node described in Chapter~5. These parameters configure the mode-dependent torque and kinematic limits, the stop behaviour, and the per-channel watchdog system.
+
+\small
+\begin{tabularx}{\textwidth}{@{}l L l r@{}}
+\caption{ExoBridge enforcement gateway parameters
+(\texttt{exo\_bridge\_params.yaml}).}
+\label{tab:params_bridge}\\
+\hline
+\textbf{Parameter} & \textbf{Description} & \textbf{Unit} & \textbf{Value} \\
+\hline
+\endfirsthead
+\hline
+\textbf{Parameter} & \textbf{Description} & \textbf{Unit} & \textbf{Value} \\
+\hline
+\endhead
+\texttt{publish\_rate\_hz}    & Main loop frequency                       & Hz       & $200.0$ \\
+\texttt{override\_tau\_limit} & Torque clamp in TORQUE\_LIMIT mode        & N\,m     & $2.0$   \\
+\texttt{compliant\_tau\_limit}& Torque clamp in COMPLIANT mode            & N\,m     & $4.0$   \\
+\texttt{compliant\_vel\_limit}& Velocity clamp in COMPLIANT mode          & rad/s    & $1.0$   \\
+\texttt{compliant\_acc\_limit}& Acceleration clamp in COMPLIANT mode      & rad/s$^2$& $2.0$   \\
+\texttt{stop\_mode}           & Behaviour in SAFE\_STOP mode              & --       & \texttt{zero\_torque\_only} \\
+\texttt{hold\_tau\_limit}     & Torque clamp in \texttt{hold\_only} stop  & N\,m     & $4.0$   \\
+\texttt{watchdog\_timeout\_sec}& Per-channel watchdog timeout             & s        & $0.5$   \\
+\texttt{watchdog\_grace\_sec} & Watchdog grace period at startup          & s        & $2.0$   \\
+\hline
+\end{tabularx}
+\normalsize
+
+% ---------------------------------------------------------------------
+% A.6 — SAFETY STATE MACHINE
+% ---------------------------------------------------------------------
+\section{SSM and FM Parameters}
+\label{app:params:safety}
+
+Table~\ref{tab:params_safety} reports the parameters of the safety state machine and the \newline \texttt{FaultMonitorMode} plugin. They configure the escalation and downgrade thresholds on torque and velocity, the debounce mechanisms, and the bridge liveness watchdog.
+
+\small
+\begin{tabularx}{\textwidth}{@{}l L l r@{}}
+\caption{Safety state machine and fault monitor parameters
+(\texttt{safety\_params.yaml}).}
+\label{tab:params_safety}\\
+\hline
+\textbf{Parameter} & \textbf{Description} & \textbf{Unit} & \textbf{Value} \\
+\hline
+\endfirsthead
+\hline
+\textbf{Parameter} & \textbf{Description} & \textbf{Unit} & \textbf{Value} \\
+\hline
+\endhead
+\multicolumn{4}{@{}l}{\textit{Torque escalation thresholds}} \\
+\texttt{tau\_compliant\_threshold}    & Entry threshold to COMPLIANT     & N\,m & $5.0$  \\
+\texttt{tau\_torque\_limit\_threshold}& Entry threshold to TORQUE\_LIMIT & N\,m & $7.5$  \\
+\texttt{tau\_safe\_stop\_threshold}   & Entry threshold to SAFE\_STOP    & N\,m & $10.0$ \\
+\hline
+\multicolumn{4}{@{}l}{\textit{Velocity escalation thresholds}} \\
+\texttt{vel\_compliant\_threshold}    & Entry threshold to COMPLIANT     & rad/s & $1.5$ \\
+\texttt{vel\_torque\_limit\_threshold}& Entry threshold to TORQUE\_LIMIT & rad/s & $2.0$ \\
+\texttt{vel\_safe\_stop\_threshold}   & Entry threshold to SAFE\_STOP    & rad/s & $3.0$ \\
+\hline
+\multicolumn{4}{@{}l}{\textit{Downgrade (exit) thresholds}} \\
+\texttt{enable\_automatic\_downgrade} & Enable automatic downgrade       & bool  & false \\
+\texttt{tau\_compliant\_exit}         & Exit threshold from COMPLIANT    & N\,m  & $4.5$ \\
+\texttt{tau\_torque\_limit\_exit}     & Exit threshold from TORQUE\_LIMIT& N\,m  & $7.0$ \\
+\texttt{vel\_compliant\_exit}         & Exit threshold from COMPLIANT    & rad/s & $0.8$ \\
+\texttt{vel\_torque\_limit\_exit}     & Exit threshold from TORQUE\_LIMIT& rad/s & $1.5$ \\
+\hline
+\multicolumn{4}{@{}l}{\textit{Debounce counters}} \\
+\texttt{compliant\_count\_threshold}  & Samples required to escalate to COMPLIANT     & --      & $3$    \\
+\texttt{torque\_count\_threshold}     & Samples required to escalate to TORQUE\_LIMIT & --      & $3$    \\
+\texttt{stop\_count\_threshold}       & Samples required to escalate to SAFE\_STOP    & --      & $2$    \\
+\texttt{downgrade\_count\_threshold}  & Clean samples required to downgrade           & samples & $2000$ \\
+\texttt{downgrade\_negative\_weight}  & Negative-sample weight in downgrade counter   & --      & $5$    \\
+\hline
+\multicolumn{4}{@{}l}{\textit{Watchdogs and grace periods}} \\
+\texttt{status\_timeout\_seconds}      & Timeout on \texttt{/exo\_bridge/status} & s & $0.75$ \\
+\texttt{grace\_period\_seconds}        & Fault monitor startup grace period      & s & $4.0$  \\
+\texttt{bridge\_liveness\_timeout\_sec}& Bridge liveness watchdog timeout        & s & $0.5$  \\
+\texttt{bridge\_liveness\_grace\_sec}  & Bridge liveness grace period            & s & $3.0$  \\
+\hline
+\end{tabularx}
+\normalsize
+
+% ---------------------------------------------------------------------
+% A.7 — OBSERVER NODE
+% ---------------------------------------------------------------------
+\section{Observer Node Parameters}
+\label{app:params:observer}
+
+Table~\ref{tab:params_observer} reports the parameters of the \texttt{observer\_node}. They configure the four detection layers (Luenberger state observer, admittance inversion estimator, generalized momentum observer, and rate-of-change guard) as well as the residual post-processing stage. The plant model parameters declared on the observer node mirror those of Table~\ref{tab:params_dynamics} to guarantee consistency between the model used for prediction and the one used for simulation.
+
+\small
+\begin{tabularx}{\textwidth}{@{}l L l r@{}}
+\caption{Observer node parameters (\texttt{observer\_params.yaml}).}
+\label{tab:params_observer}\\
+\hline
+\textbf{Parameter} & \textbf{Description} & \textbf{Unit} & \textbf{Value} \\
+\hline
+\endfirsthead
+\hline
+\textbf{Parameter} & \textbf{Description} & \textbf{Unit} & \textbf{Value} \\
+\hline
+\endhead
+\texttt{joint\_name}    & Observed joint                          & --     & \texttt{rev\_crank} \\
+\texttt{publish\_rate}  & Observer loop frequency                 & Hz     & $200.0$ \\
+\hline
+\multicolumn{4}{@{}l}{\textit{Plant model (mirrored from \texttt{dynamics\_params.yaml})}} \\
+\texttt{fric\_visc}     & Viscous friction coefficient            & N\,m\,s/rad & $2.0$   \\
+\texttt{fric\_coul}     & Coulomb friction torque                 & N\,m        & $2.0$   \\
+\texttt{fric\_eps}      & $\tanh$ smoothing threshold             & rad/s       & $0.005$ \\
+\texttt{damping\_theta} & Additional linear damping               & N\,m\,s/rad & $1.0$   \\
+\hline
+\multicolumn{4}{@{}l}{\textit{Observer~1 --- Luenberger state observer}} \\
+\texttt{obs1\_pole\_1}  & First desired observer pole $p_1$       & 1/s & $-15.0$ \\
+\texttt{obs1\_pole\_2}  & Second desired observer pole $p_2$      & 1/s & $-20.0$ \\
+\hline
+\multicolumn{4}{@{}l}{\textit{Observer~2 --- Admittance inversion estimator}} \\
+\texttt{adm\_M\_virt}        & Virtual inertia (mirrored)          & kg\,m$^2$    & $0.5$  \\
+\texttt{adm\_D\_virt}        & Virtual damping (mirrored)          & N\,m\,s/rad  & $5.0$  \\
+\texttt{adm\_K\_virt}        & Virtual stiffness (mirrored)        & N\,m/rad     & $2.0$  \\
+\texttt{adm\_theta\_eq}      & Equilibrium position (mirrored)     & rad          & $0.0$  \\
+\texttt{adm\_force\_deadband}& Force deadband (mirrored)           & N\,m         & $0.0$  \\
+\texttt{adm\_theta\_ref\_min}& Lower reference clamp (mirrored)    & rad          & $-0.76$ \\
+\texttt{adm\_theta\_ref\_max}& Upper reference clamp (mirrored)    & rad          & $+0.09$ \\
+\texttt{adm\_theta\_dot\_max}& Reference velocity clamp (mirrored) & rad/s        & $5.0$  \\
+\texttt{obs2\_alpha\_acc}    & EMA coefficient on $\hat{\ddot{\theta}}$ & --      & $0.50$ \\
+\texttt{obs2\_alpha\_tau}    & EMA coefficient on $\hat{\tau}_{\mathrm{ext}}$ & -- & $0.30$ \\
+\hline
+\multicolumn{4}{@{}l}{\textit{Observer~3 --- Generalized momentum observer}} \\
+\texttt{mom\_obs\_gain}      & Observer gain $K_{\mathrm{mom}}$    & 1/s          & $50.0$ \\
+\hline
+\multicolumn{4}{@{}l}{\textit{Guard~4 --- Rate-of-change monitor}} \\
+\texttt{tau\_ext\_max\_rate} & Threshold on $|\dot{\tau}_{\mathrm{ext}}|$ & N\,m/s & $100.0$ \\
+\hline
+\multicolumn{4}{@{}l}{\textit{Residual post-processing}} \\
+\texttt{residual\_filter\_alpha} & EMA coefficient on residuals       & --      & $0.05$ \\
+\texttt{rms\_window}             & Sliding window for residual RMS    & samples & $50$   \\
+\texttt{torque\_res\_max}        & Saturation on the torque residual  & N\,m    & $0.5$  \\
+\hline
+\end{tabularx}
+\normalsize
+
+% ---------------------------------------------------------------------
+% A.8 — FAULT INJECTION FRAMEWORK
+% ---------------------------------------------------------------------
+\section{Fault Injection Framework Parameters}
+\label{app:params:faults}
+
+Table~\ref{tab:params_faults} reports the parameters of the \texttt{fault\_injector} node. The injector supports six fault types (\textit{offset}, \textit{noise}, \textit{spike}, \textit{stuck}, \textit{drop}, \textit{scale}) on four signal channels: external force projected on $\theta$ (channel~0), trajectory reference (channel~1), commanded torque (channel~2), and joint state feedback (channel~3).
+
+\small
+\begin{tabularx}{\textwidth}{@{}l L l r@{}}
+\caption{Fault injection framework parameters
+(\texttt{fault\_injector} node).}
+\label{tab:params_faults}\\
+\hline
+\textbf{Parameter} & \textbf{Description} & \textbf{Unit} & \textbf{Default} \\
+\hline
+\endfirsthead
+\hline
+\textbf{Parameter} & \textbf{Description} & \textbf{Unit} & \textbf{Default} \\
+\hline
+\endhead
+\texttt{channel}         & Target signal channel ($0$--$3$)      & --     & $2$       \\
+\texttt{fault\_active}   & Enable fault injection                & bool   & false     \\
+\texttt{fault\_type}     & Fault type identifier                 & --     & \texttt{offset}    \\
+\texttt{fault\_magnitude}& Magnitude of the injected fault       & --     & $1.0$     \\
+\texttt{noise\_std}      & Standard deviation for \textit{noise} & --     & $0.1$     \\
+\texttt{spike\_duration} & Duration of \textit{spike} faults     & s      & $0.05$    \\
+\texttt{target\_index}   & Index in vector signals               & --     & $0$       \\
+\texttt{publish\_rate}   & Injector loop frequency               & Hz     & $200.0$   \\
+\texttt{fault\_js\_field}& Affected field of \texttt{JointState} & --     & \texttt{position} \\
+\texttt{joint\_name}     & Joint name on channel~3               & --     & \texttt{rev\_crank}\\
+\hline
+\end{tabularx}
+\normalsize

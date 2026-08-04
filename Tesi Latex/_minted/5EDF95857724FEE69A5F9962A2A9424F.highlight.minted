@@ -1,0 +1,26 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+
+@myPC:.../ros2\PYGZus{}ws\PYGZdl{}\PYG{+w}{ }ros2\PYG{+w}{ }topic\PYG{+w}{ }\PYG{n+nb}{echo}\PYG{+w}{ }/safety\PYGZus{}manager/status
+
+\PYG{+w}{  }\PYGZhy{}\PYG{+w}{ }\PYGZhy{}\PYG{+w}{ }\PYGZhy{}
+
+stamp:
+\PYG{+w}{  }sec:\PYG{+w}{ }\PYG{l+m}{1234567890}
+\PYG{+w}{  }nanosec:\PYG{+w}{ }\PYG{l+m}{123456789}
+\PYG{+w}{  }state:\PYG{+w}{ }FAULT\PYGZus{}MONITOR
+\PYG{+w}{  }state\PYGZus{}id:\PYG{+w}{ }\PYG{l+m}{0}
+\PYG{+w}{  }safe\PYGZus{}stop\PYGZus{}latched:\PYG{+w}{ }\PYG{n+nb}{false}
+\PYG{+w}{  }last\PYGZus{}fault\PYGZus{}reason:\PYG{+w}{ }none
+\PYG{+w}{  }automatic\PYGZus{}downgrade\PYGZus{}enabled:\PYG{+w}{ }\PYG{n+nb}{false}
+\PYG{+w}{  }counter\PYGZus{}exit\PYGZus{}compliant:\PYG{+w}{ }\PYG{l+m}{0}
+\PYG{+w}{  }counter\PYGZus{}exit\PYGZus{}torque\PYGZus{}limit:\PYG{+w}{ }\PYG{l+m}{0}
+\PYG{+w}{  }bridge\PYGZus{}alive:\PYG{+w}{ }\PYG{n+nb}{true}
+\PYG{+w}{  }bridge\PYGZus{}mode\PYGZus{}coherent:\PYG{+w}{ }\PYG{n+nb}{true}
+\PYG{+w}{  }last\PYGZus{}transition\PYGZus{}time:
+\PYG{+w}{    }sec:\PYG{+w}{ }\PYG{l+m}{1234567890}
+\PYG{+w}{    }nanosec:\PYG{+w}{ }\PYG{l+m}{123456789}
+\PYG{+w}{  }last\PYGZus{}transition\PYGZus{}reason:\PYG{+w}{ }init
+
+\PYG{+w}{  }\PYGZhy{}\PYG{+w}{ }\PYGZhy{}\PYG{+w}{ }\PYGZhy{}
+
+\end{MintedVerbatim}

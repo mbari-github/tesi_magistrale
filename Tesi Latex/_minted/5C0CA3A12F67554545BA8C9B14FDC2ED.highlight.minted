@@ -1,0 +1,14 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+
+\PYG{n}{FaultResponseLevel}\PYG{+w}{ }\PYG{n+nf}{FaultMonitorMode::debounced\PYGZus{}entry\PYGZus{}level}\PYG{p}{()}\PYG{+w}{ }\PYG{k}{const}
+\PYG{p}{\PYGZob{}}
+\PYG{+w}{  }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{stop\PYGZus{}counter\PYGZus{}}\PYG{+w}{      }\PYG{o}{\PYGZgt{}=}\PYG{+w}{ }\PYG{n}{stop\PYGZus{}count\PYGZus{}threshold\PYGZus{}}\PYG{p}{)}
+\PYG{+w}{    }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{FaultResponseLevel}\PYG{o}{::}\PYG{n}{SAFE\PYGZus{}STOP}\PYG{p}{;}
+\PYG{+w}{  }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{torque\PYGZus{}counter\PYGZus{}}\PYG{+w}{    }\PYG{o}{\PYGZgt{}=}\PYG{+w}{ }\PYG{n}{torque\PYGZus{}count\PYGZus{}threshold\PYGZus{}}\PYG{p}{)}
+\PYG{+w}{    }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{FaultResponseLevel}\PYG{o}{::}\PYG{n}{TORQUE\PYGZus{}LIMIT}\PYG{p}{;}
+\PYG{+w}{  }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{compliant\PYGZus{}counter\PYGZus{}}\PYG{+w}{ }\PYG{o}{\PYGZgt{}=}\PYG{+w}{ }\PYG{n}{compliant\PYGZus{}count\PYGZus{}threshold\PYGZus{}}\PYG{p}{)}
+\PYG{+w}{    }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{FaultResponseLevel}\PYG{o}{::}\PYG{n}{COMPLIANT}\PYG{p}{;}
+\PYG{+w}{  }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{FaultResponseLevel}\PYG{o}{::}\PYG{n}{NOMINAL}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+
+\end{MintedVerbatim}

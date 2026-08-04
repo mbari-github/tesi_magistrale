@@ -1,0 +1,242 @@
+\PassOptionsToPackage{table, dvipsnames}{xcolor}
+\documentclass[a4paper,oneside,12pt]{toptesi}
+
+% --------------------------------------------------
+% Encoding & Language
+% --------------------------------------------------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{amsmath}
+
+% --------------------------------------------------
+% Graphics & Plots
+% --------------------------------------------------
+\usepackage{graphicx}
+\usepackage{rotating}
+\usepackage{afterpage}
+\usepackage{subfig}
+\usepackage{tikz}
+\usepackage{amssymb}
+\usetikzlibrary{positioning}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{tabularx}
+\usepackage{ltablex}
+\usepackage{booktabs}
+
+
+
+
+% --------------------------------------------------
+% Colors
+% --------------------------------------------------
+\usepackage{xcolor}
+
+% Code color palette (print-friendly)
+%\definecolor{codebg}{RGB}{245,245,245}
+%\definecolor{codeframe}{RGB}{200,200,200}
+
+\definecolor{codebg}{RGB}{250,250,250}
+\definecolor{codeframe}{RGB}{180,180,180}
+\definecolor{codekeyword}{RGB}{0,0,120}
+\definecolor{codecomment}{RGB}{0,110,0}
+\definecolor{codestring}{RGB}{160,0,0}
+\definecolor{codenumber}{RGB}{120,120,120}
+
+% --------------------------------------------------
+% Code listings (refined, no external tools)
+% --------------------------------------------------
+\usepackage{listings}
+
+% Python language refinement
+\lstdefinelanguage{python}{
+  morekeywords={
+    False,None,True,and,as,assert,async,await,break,class,
+    continue,def,del,elif,else,except,finally,for,from,global,
+    if,import,in,is,lambda,nonlocal,not,or,pass,raise,return,
+    try,while,with,yield
+  },
+  sensitive=true,
+  comment=[l]\#,
+  morestring=[b]',
+  morestring=[b]"
+}
+
+% Global listings style for the thesis
+\lstdefinestyle{thesis}{
+  language=python,
+  backgroundcolor=\color{codebg},
+  frame=single,
+  rulecolor=\color{codeframe},
+  basicstyle=\ttfamily\footnotesize,
+  keywordstyle=\color{codekeyword}\bfseries,
+  commentstyle=\color{codecomment}\itshape,
+  stringstyle=\color{codestring},
+  % numbers=left,
+  % numberstyle=\tiny\color{codenumber},
+  % numbersep=8pt,
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=4,
+  showstringspaces=false,
+  captionpos=b
+}
+
+\lstset{style=thesis}
+
+% Inline code command
+\newcommand{\codeinline}[1]{\texttt{#1}}
+
+% --------------------------------------------------
+% Caption & floating environments
+% --------------------------------------------------
+\usepackage[font=small,skip=1pt]{caption}
+\usepackage{subcaption}
+\usepackage{float}
+\floatstyle{ruled}
+\newfloat{listing}{tbp}{lol}
+\floatname{listing}{Codice}
+
+% --------------------------------------------------
+% Code listings with minted
+% --------------------------------------------------
+\usepackage{minted}
+
+\setminted{
+    fontsize=\footnotesize,
+    baselinestretch=1.1,
+    breaklines=true,
+    tabsize=4,
+    frame=leftline,
+    framerule=2pt,
+    framesep=8pt,
+    bgcolor=codebg,
+    rulecolor=codeframe,
+    style=tango
+}
+
+% --------------------------------------------------
+% Custom commands
+% --------------------------------------------------
+\newcommand{\walter}[1]{\textcolor{red}{{\bf [Walter: }{#1}{\bf ]}}}
+
+% --------------------------------------------------
+% Chapter formatting & paragraph spacing
+% --------------------------------------------------
+\usepackage{parskip}
+\setlength{\parskip}{0.6em}
+
+\usepackage{titlesec}
+\titleformat{\chapter}
+  {\normalfont\Huge\bfseries}
+  {}
+  {0pt}
+  {\Huge}
+
+% --------------------------------------------------
+% Float control
+% --------------------------------------------------
+\usepackage{placeins}
+
+% --------------------------------------------------
+% Hyperref
+% --------------------------------------------------
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks = true,
+    allcolors=black
+}
+
+% --------------------------------------------------
+% Page number position
+% --------------------------------------------------
+\setlength{\footskip}{2.0cm}
+
+% --------------------------------------------------
+% Toptesi definitions
+% --------------------------------------------------
+\def\beforecandidate{Candidate}
+\def\beforetitle{Dissertation in}
+\def\beforeprof{Supervisor}
+\def\beforeannoacc{Academic Year}
+
+% --------------------------------------------------
+% Thesis metadata
+% --------------------------------------------------
+\def\dept{DEPARTMENT OF ELECTRICAL AND INFORMATION ENGINEERING}
+\def\course{Master Degree in Robotics}
+\def\title{Digital Twin of a Hand Exoskeleton for Model-Based \\ Control and Functional Safety in Rehabilitation Scenarios}
+\def\author{Marcello Bari}
+\def\prof{Prof. Paolo Lino }
+\def\cosup{Prof. Stefano Mazzoleni \\ Amelia Gioscia, PhD Candidate}
+\def\industrial{Pietro De Carlo \\[0pt] Michele Tomaselli \\[2pt] Adriano Sciusco}
+\def\beforecosup{Co-supervisors}
+\def\beforeindustrial{Industrial Tutors (Bosch)}
+\def\subject{Robotics}
+\def\annoacc{2025 - 2026}
+
+% --------------------------------------------------
+% Clear double page fix
+% --------------------------------------------------
+\makeatletter
+\def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
+    \hbox{}
+    \vspace*{\fill}
+    \vspace{\fill}
+    \thispagestyle{empty}
+    \newpage
+    \if@twocolumn\hbox{}\newpage\fi\fi\fi}
+\makeatother
+
+% ==================================================
+% DOCUMENT
+% ==================================================
+\begin{document}
+
+\english
+%\maketitle
+
+\input{0.front}
+
+\pagestyle{empty}
+\newpage
+\null
+\newpage
+\noindent\hspace*{-2.5cm}\includegraphics[width=1.3\textwidth]{liberatoria.png}
+\newpage
+\null
+\newpage
+
+
+\clearpage
+\pagestyle{plain} 
+\cleardoublepage
+\pagenumbering{roman}
+
+\input{1.abstract}
+
+\tableofcontents
+
+\cleardoublepage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\include{2.introduction}
+\include{3.chapter_1}
+\include{4.chapter_2}
+\include{5.chapter_3}
+\include{6.chapter_4}
+\include{7.chapter_5}
+\include{8.chapter_6}
+\include{9.chapter_7}
+\include{conclusion}
+\appendix
+\include{tables.tex}
+\nocite{*}
+
+
+\bibliographystyle{plain}
+\bibliography{bibliografia}
+
+\end{document}

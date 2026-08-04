@@ -1,0 +1,19 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{FaultMonitorMode::update\PYGZus{}debounce\PYGZus{}counters}\PYG{p}{(}
+\PYG{+w}{  }\PYG{n}{FaultResponseLevel}\PYG{+w}{ }\PYG{n}{level}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+\PYG{+w}{  }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{level}\PYG{+w}{ }\PYG{o}{\PYGZgt{}=}\PYG{+w}{ }\PYG{n}{FaultResponseLevel}\PYG{o}{::}\PYG{n}{COMPLIANT}\PYG{p}{)}
+\PYG{+w}{    }\PYG{o}{++}\PYG{n}{compliant\PYGZus{}counter\PYGZus{}}\PYG{p}{;}
+\PYG{+w}{  }\PYG{k}{else}\PYG{+w}{ }\PYG{n}{compliant\PYGZus{}counter\PYGZus{}}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}
+
+\PYG{+w}{  }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{level}\PYG{+w}{ }\PYG{o}{\PYGZgt{}=}\PYG{+w}{ }\PYG{n}{FaultResponseLevel}\PYG{o}{::}\PYG{n}{TORQUE\PYGZus{}LIMIT}\PYG{p}{)}
+\PYG{+w}{    }\PYG{o}{++}\PYG{n}{torque\PYGZus{}counter\PYGZus{}}\PYG{p}{;}
+\PYG{+w}{  }\PYG{k}{else}\PYG{+w}{ }\PYG{n}{torque\PYGZus{}counter\PYGZus{}}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}
+
+\PYG{+w}{  }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{level}\PYG{+w}{ }\PYG{o}{\PYGZgt{}=}\PYG{+w}{ }\PYG{n}{FaultResponseLevel}\PYG{o}{::}\PYG{n}{SAFE\PYGZus{}STOP}\PYG{p}{)}
+\PYG{+w}{    }\PYG{o}{++}\PYG{n}{stop\PYGZus{}counter\PYGZus{}}\PYG{p}{;}
+\PYG{+w}{  }\PYG{k}{else}\PYG{+w}{ }\PYG{n}{stop\PYGZus{}counter\PYGZus{}}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+
+\end{MintedVerbatim}

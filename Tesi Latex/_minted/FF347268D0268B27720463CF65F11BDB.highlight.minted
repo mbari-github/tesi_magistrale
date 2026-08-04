@@ -1,0 +1,35 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+
+\PYG{+w}{ }\PYG{k+kt}{bool}\PYG{+w}{ }\PYG{n+nf}{StateMachine::can\PYGZus{}transition\PYGZus{}to}\PYG{p}{(}
+\PYG{+w}{  }\PYG{n}{SafetyState}\PYG{+w}{ }\PYG{n}{target\PYGZus{}state}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{const}
+\PYG{p}{\PYGZob{}}
+\PYG{+w}{  }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{safe\PYGZus{}stop\PYGZus{}latched\PYGZus{}}\PYG{+w}{ }\PYG{o}{\PYGZam{}\PYGZam{}}
+\PYG{+w}{      }\PYG{n}{target\PYGZus{}state}\PYG{+w}{ }\PYG{o}{!=}\PYG{+w}{ }\PYG{n}{SafetyState}\PYG{o}{::}\PYG{n}{SAFE\PYGZus{}STOP}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{return}\PYG{+w}{ }\PYG{n+nb}{false}\PYG{p}{;}
+
+\PYG{+w}{  }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{target\PYGZus{}state}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{n}{current\PYGZus{}state\PYGZus{}}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{return}\PYG{+w}{ }\PYG{n+nb}{true}\PYG{p}{;}
+
+\PYG{+w}{  }\PYG{k}{switch}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{current\PYGZus{}state\PYGZus{}}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{k}{case}\PYG{+w}{ }\PYG{n+no}{SafetyState}\PYG{o}{::}\PYG{n+no}{FAULT\PYGZus{}MONITOR}\PYG{p}{:}
+\PYG{+w}{      }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{target\PYGZus{}state}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{n}{SafetyState}\PYG{o}{::}\PYG{n}{COMPLIANT\PYGZus{}MODE}\PYG{+w}{    }\PYG{o}{||}
+\PYG{+w}{             }\PYG{n}{target\PYGZus{}state}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{n}{SafetyState}\PYG{o}{::}\PYG{n}{TORQUE\PYGZus{}LIMIT\PYGZus{}MODE}\PYG{+w}{ }\PYG{o}{||}
+\PYG{+w}{             }\PYG{n}{target\PYGZus{}state}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{n}{SafetyState}\PYG{o}{::}\PYG{n}{SAFE\PYGZus{}STOP}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{k}{case}\PYG{+w}{ }\PYG{n+no}{SafetyState}\PYG{o}{::}\PYG{n+no}{COMPLIANT\PYGZus{}MODE}\PYG{p}{:}
+\PYG{+w}{      }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{target\PYGZus{}state}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{n}{SafetyState}\PYG{o}{::}\PYG{n}{TORQUE\PYGZus{}LIMIT\PYGZus{}MODE}\PYG{+w}{ }\PYG{o}{||}
+\PYG{+w}{             }\PYG{n}{target\PYGZus{}state}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{n}{SafetyState}\PYG{o}{::}\PYG{n}{SAFE\PYGZus{}STOP}\PYG{+w}{         }\PYG{o}{||}
+\PYG{+w}{             }\PYG{n}{target\PYGZus{}state}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{n}{SafetyState}\PYG{o}{::}\PYG{n}{FAULT\PYGZus{}MONITOR}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{k}{case}\PYG{+w}{ }\PYG{n+no}{SafetyState}\PYG{o}{::}\PYG{n+no}{TORQUE\PYGZus{}LIMIT\PYGZus{}MODE}\PYG{p}{:}
+\PYG{+w}{      }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{target\PYGZus{}state}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{n}{SafetyState}\PYG{o}{::}\PYG{n}{SAFE\PYGZus{}STOP}\PYG{+w}{         }\PYG{o}{||}
+\PYG{+w}{             }\PYG{n}{target\PYGZus{}state}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{n}{SafetyState}\PYG{o}{::}\PYG{n}{FAULT\PYGZus{}MONITOR}\PYG{+w}{     }\PYG{o}{||}
+\PYG{+w}{             }\PYG{n}{target\PYGZus{}state}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{n}{SafetyState}\PYG{o}{::}\PYG{n}{COMPLIANT\PYGZus{}MODE}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{k}{case}\PYG{+w}{ }\PYG{n+no}{SafetyState}\PYG{o}{::}\PYG{n+no}{SAFE\PYGZus{}STOP}\PYG{p}{:}
+\PYG{+w}{      }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{target\PYGZus{}state}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{n}{SafetyState}\PYG{o}{::}\PYG{n}{SAFE\PYGZus{}STOP}\PYG{+w}{    }\PYG{o}{||}
+\PYG{+w}{             }\PYG{n}{target\PYGZus{}state}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{n}{SafetyState}\PYG{o}{::}\PYG{n}{FAULT\PYGZus{}MONITOR}\PYG{p}{;}
+
+\PYG{+w}{    }\PYG{k}{default}\PYG{o}{:}\PYG{+w}{ }\PYG{k}{return}\PYG{+w}{ }\PYG{n+nb}{false}\PYG{p}{;}
+\PYG{+w}{  }\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+
+\end{MintedVerbatim}

@@ -1,0 +1,20 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+
+\PYG{k}{if} \PYG{p}{(}\PYG{n}{counter\PYGZus{}exit\PYGZus{}torque\PYGZus{}limit\PYGZus{}} \PYG{o}{\PYGZgt{}=} \PYG{n}{downgrade\PYGZus{}count\PYGZus{}threshold\PYGZus{}}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+  \PYG{n}{counter\PYGZus{}exit\PYGZus{}torque\PYGZus{}limit\PYGZus{}} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+  \PYG{n}{counter\PYGZus{}exit\PYGZus{}compliant\PYGZus{}}    \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+
+  \PYG{k}{if} \PYG{p}{(}\PYG{n}{abs\PYGZus{}tau} \PYG{o}{\PYGZlt{}} \PYG{n}{tau\PYGZus{}compliant\PYGZus{}exit\PYGZus{}}
+      \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{abs\PYGZus{}vel} \PYG{o}{\PYGZlt{}} \PYG{n}{vel\PYGZus{}compliant\PYGZus{}exit\PYGZus{}}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+    \PYG{n}{fault\PYGZus{}present\PYGZus{}} \PYG{o}{=} \PYG{n}{false}\PYG{p}{;}
+    \PYG{n}{request\PYGZus{}state\PYGZus{}change}\PYG{p}{(}
+      \PYG{n}{SafetyState}\PYG{p}{::}\PYG{n}{FAULT\PYGZus{}MONITOR}\PYG{p}{,}
+      \PYG{l+s+s2}{\PYGZdq{}downgrade\PYGZus{}torque\PYGZus{}limit\PYGZus{}to\PYGZus{}nominal\PYGZdq{}}\PYG{p}{);}
+  \PYG{p}{\PYGZcb{}} \PYG{k}{else} \PYG{p}{\PYGZob{}}
+    \PYG{n}{request\PYGZus{}state\PYGZus{}change}\PYG{p}{(}
+      \PYG{n}{SafetyState}\PYG{p}{::}\PYG{n}{COMPLIANT\PYGZus{}MODE}\PYG{p}{,}
+      \PYG{l+s+s2}{\PYGZdq{}downgrade\PYGZus{}torque\PYGZus{}limit\PYGZus{}to\PYGZus{}compliant\PYGZdq{}}\PYG{p}{);}
+  \PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+
+\end{MintedVerbatim}

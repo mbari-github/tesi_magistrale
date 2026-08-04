@@ -1,0 +1,15 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+
+    \PYG{k}{def}\PYG{+w}{ }\PYG{n+nf}{closure\PYGZus{}error}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{q}\PYG{p}{):}
+    \PYG{n}{pin}\PYG{o}{.}\PYG{n}{forwardKinematics}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{model}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{data}\PYG{p}{,} \PYG{n}{q}\PYG{p}{)}
+    \PYG{n}{pin}\PYG{o}{.}\PYG{n}{updateFramePlacements}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{model}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{data}\PYG{p}{)}
+
+    \PYG{n}{e} \PYG{o}{=} \PYG{p}{[]}
+    \PYG{k}{for} \PYG{n}{ida}\PYG{p}{,} \PYG{n}{idb} \PYG{o+ow}{in} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{frame\PYGZus{}ids}\PYG{p}{:}
+        \PYG{n}{e}\PYG{o}{.}\PYG{n}{extend}\PYG{p}{(}
+            \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{data}\PYG{o}{.}\PYG{n}{oMf}\PYG{p}{[}\PYG{n}{ida}\PYG{p}{]}\PYG{o}{.}\PYG{n}{translation} \PYG{o}{\PYGZhy{}}
+            \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{data}\PYG{o}{.}\PYG{n}{oMf}\PYG{p}{[}\PYG{n}{idb}\PYG{p}{]}\PYG{o}{.}\PYG{n}{translation}
+        \PYG{p}{)}
+    \PYG{k}{return} \PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{n}{e}\PYG{p}{)}
+
+\end{MintedVerbatim}

@@ -1,0 +1,5 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+
+\PYG{+w}{    }TEL,\PYGZlt{}ms\PYGZgt{},\PYGZlt{}force\PYGZus{}N\PYGZgt{},\PYGZlt{}angle\PYGZus{}deg\PYGZgt{},\PYGZlt{}pos\PYGZus{}counts\PYGZgt{},\PYGZlt{}vel\PYGZus{}counts\PYGZus{}s\PYGZgt{},\PYGZlt{}current\PYGZus{}A\PYGZgt{}
+
+\end{MintedVerbatim}

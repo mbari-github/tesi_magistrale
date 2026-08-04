@@ -1,0 +1,11 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+
+\PYG{+w}{    }\PYG{k}{enum}\PYG{+w}{ }\PYG{k}{class}\PYG{+w}{ }\PYG{n+nc}{SafetyState}
+\PYG{+w}{    }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{FAULT\PYGZus{}MONITOR}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n}{COMPLIANT\PYGZus{}MODE}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n}{TORQUE\PYGZus{}LIMIT\PYGZus{}MODE}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{2}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n}{SAFE\PYGZus{}STOP}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{3}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{};}
+
+\end{MintedVerbatim}

@@ -1,0 +1,18 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+
+\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{bridge\PYGZus{}mode\PYGZus{}id}\PYG{+w}{ }\PYG{o}{!=}\PYG{+w}{ }\PYG{n}{expected\PYGZus{}id}
+\PYG{+w}{    }\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{+w}{ }\PYG{o}{!}\PYG{n}{transition\PYGZus{}in\PYGZus{}progress\PYGZus{}}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{  }\PYG{n}{mode\PYGZus{}mismatch\PYGZus{}count\PYGZus{}}\PYG{o}{++}\PYG{p}{;}
+\PYG{+w}{  }\PYG{n}{bridge\PYGZus{}mode\PYGZus{}coherent\PYGZus{}}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nb}{false}\PYG{p}{;}
+\PYG{+w}{  }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{mode\PYGZus{}mismatch\PYGZus{}count\PYGZus{}}\PYG{+w}{ }\PYG{o}{\PYGZgt{}=}\PYG{+w}{ }\PYG{n}{mode\PYGZus{}mismatch\PYGZus{}threshold\PYGZus{}}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{request\PYGZus{}state\PYGZus{}change}\PYG{p}{(}
+\PYG{+w}{      }\PYG{n}{SafetyState}\PYG{o}{::}\PYG{n}{SAFE\PYGZus{}STOP}\PYG{p}{,}
+\PYG{+w}{      }\PYG{l+s}{\PYGZdq{}bridge\PYGZus{}mode\PYGZus{}mismatch\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{    }\PYG{k}{return}\PYG{p}{;}
+\PYG{+w}{  }\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}\PYG{+w}{ }\PYG{k}{else}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{  }\PYG{n}{mode\PYGZus{}mismatch\PYGZus{}count\PYGZus{}}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{+w}{  }\PYG{n}{bridge\PYGZus{}mode\PYGZus{}coherent\PYGZus{}}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nb}{true}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+
+\end{MintedVerbatim}

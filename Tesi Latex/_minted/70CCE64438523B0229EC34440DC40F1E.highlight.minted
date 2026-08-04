@@ -1,0 +1,16 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+
+\PYG{n}{tau\PYGZus{}fric\PYGZus{}visc} \PYG{o}{=} \PYG{n}{fric\PYGZus{}visc} \PYG{o}{*} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{\PYGZus{}theta\PYGZus{}dot\PYGZus{}hat}
+\PYG{n}{tau\PYGZus{}fric\PYGZus{}coul} \PYG{o}{=} \PYG{n}{fric\PYGZus{}coul} \PYG{o}{*} \PYG{n}{math}\PYG{o}{.}\PYG{n}{tanh}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{\PYGZus{}theta\PYGZus{}dot\PYGZus{}hat} \PYG{o}{/} \PYG{n}{fric\PYGZus{}eps}\PYG{p}{)}
+\PYG{n}{tau\PYGZus{}damp} \PYG{o}{=} \PYG{n}{damping} \PYG{o}{*} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{\PYGZus{}theta\PYGZus{}dot\PYGZus{}hat}
+\PYG{n}{tau\PYGZus{}dissipative} \PYG{o}{=} \PYG{n}{tau\PYGZus{}fric\PYGZus{}visc} \PYG{o}{+} \PYG{n}{tau\PYGZus{}fric\PYGZus{}coul} \PYG{o}{+} \PYG{n}{tau\PYGZus{}damp}
+
+\PYG{n}{theta\PYGZus{}ddot\PYGZus{}model} \PYG{o}{=} \PYG{p}{(}
+    \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{\PYGZus{}tau\PYGZus{}m}
+    \PYG{o}{+} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{\PYGZus{}tau\PYGZus{}pass}
+    \PYG{o}{+} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{\PYGZus{}tau\PYGZus{}ext\PYGZus{}meas}
+    \PYG{o}{\PYGZhy{}} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{\PYGZus{}proj}
+    \PYG{o}{\PYGZhy{}} \PYG{n}{tau\PYGZus{}dissipative}
+\PYG{p}{)} \PYG{o}{/} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{\PYGZus{}M\PYGZus{}eff}
+
+\end{MintedVerbatim}

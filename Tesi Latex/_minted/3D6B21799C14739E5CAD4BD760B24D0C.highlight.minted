@@ -1,0 +1,38 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{StateMachine::check\PYGZus{}bridge\PYGZus{}liveness}\PYG{p}{()}
+\PYG{p}{\PYGZob{}}
+\PYG{+w}{  }\PYG{k}{const}\PYG{+w}{ }\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n}{uptime}\PYG{+w}{ }\PYG{o}{=}
+\PYG{+w}{    }\PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{now}\PYG{p}{()}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{last\PYGZus{}transition\PYGZus{}time\PYGZus{}}\PYG{p}{).}\PYG{n}{seconds}\PYG{p}{();}
+\PYG{+w}{  }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{uptime}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{bridge\PYGZus{}liveness\PYGZus{}grace\PYGZus{}}\PYG{+w}{ }\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{+w}{ }\PYG{o}{!}\PYG{n}{bridge\PYGZus{}ever\PYGZus{}seen\PYGZus{}}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{k}{return}\PYG{p}{;}
+\PYG{+w}{  }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{  }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{o}{!}\PYG{n}{bridge\PYGZus{}ever\PYGZus{}seen\PYGZus{}}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{RCLCPP\PYGZus{}ERROR}\PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{get\PYGZus{}logger}\PYG{p}{(),}
+\PYG{+w}{      }\PYG{l+s}{\PYGZdq{}Bridge NEVER seen after \PYGZpc{}.1fs grace \PYGZhy{}\PYGZgt{} SAFE\PYGZus{}STOP\PYGZdq{}}\PYG{p}{,}
+\PYG{+w}{      }\PYG{n}{bridge\PYGZus{}liveness\PYGZus{}grace\PYGZus{}}\PYG{p}{);}
+\PYG{+w}{    }\PYG{n}{bridge\PYGZus{}ever\PYGZus{}seen\PYGZus{}}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nb}{true}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{bridge\PYGZus{}alive\PYGZus{}}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nb}{false}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{request\PYGZus{}state\PYGZus{}change}\PYG{p}{(}
+\PYG{+w}{      }\PYG{n}{SafetyState}\PYG{o}{::}\PYG{n}{SAFE\PYGZus{}STOP}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}bridge\PYGZus{}never\PYGZus{}seen\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{    }\PYG{k}{return}\PYG{p}{;}
+\PYG{+w}{  }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{  }\PYG{k}{const}\PYG{+w}{ }\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n}{age}\PYG{+w}{ }\PYG{o}{=}
+\PYG{+w}{    }\PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{now}\PYG{p}{()}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{last\PYGZus{}bridge\PYGZus{}status\PYGZus{}time\PYGZus{}}\PYG{p}{).}\PYG{n}{seconds}\PYG{p}{();}
+
+\PYG{+w}{  }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{age}\PYG{+w}{ }\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{n}{bridge\PYGZus{}liveness\PYGZus{}timeout\PYGZus{}}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{bridge\PYGZus{}alive\PYGZus{}}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nb}{false}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{current\PYGZus{}state\PYGZus{}}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{n}{SafetyState}\PYG{o}{::}\PYG{n}{SAFE\PYGZus{}STOP}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{      }\PYG{k}{return}\PYG{p}{;}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{n}{RCLCPP\PYGZus{}ERROR}\PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{get\PYGZus{}logger}\PYG{p}{(),}
+\PYG{+w}{      }\PYG{l+s}{\PYGZdq{}Bridge status TIMEOUT | age=\PYGZpc{}.3fs \PYGZgt{} \PYGZdq{}}
+\PYG{+w}{      }\PYG{l+s}{\PYGZdq{}timeout=\PYGZpc{}.3fs \PYGZhy{}\PYGZgt{} SAFE\PYGZus{}STOP\PYGZdq{}}\PYG{p}{,}
+\PYG{+w}{      }\PYG{n}{age}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{bridge\PYGZus{}liveness\PYGZus{}timeout\PYGZus{}}\PYG{p}{);}
+\PYG{+w}{    }\PYG{n}{request\PYGZus{}state\PYGZus{}change}\PYG{p}{(}
+\PYG{+w}{      }\PYG{n}{SafetyState}\PYG{o}{::}\PYG{n}{SAFE\PYGZus{}STOP}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}bridge\PYGZus{}liveness\PYGZus{}timeout\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{  }\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+
+\end{MintedVerbatim}

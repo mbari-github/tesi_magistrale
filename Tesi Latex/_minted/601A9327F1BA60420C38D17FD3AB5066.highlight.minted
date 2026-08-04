@@ -1,0 +1,8 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+
+    \PYG{k}{for} \PYG{n}{ida}\PYG{p}{,} \PYG{n}{idb} \PYG{o+ow}{in} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{closure\PYGZus{}frame\PYGZus{}pairs}\PYG{p}{:}
+            \PYG{n}{JA} \PYG{o}{=} \PYG{n}{pin}\PYG{o}{.}\PYG{n}{computeFrameJacobian}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{model}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{data}\PYG{p}{,} \PYG{n}{q}\PYG{p}{,} \PYG{n}{ida}\PYG{p}{,} \PYG{n}{pin}\PYG{o}{.}\PYG{n}{ReferenceFrame}\PYG{o}{.}\PYG{n}{LOCAL\PYGZus{}WORLD\PYGZus{}ALIGNED}\PYG{p}{)[:}\PYG{l+m+mi}{3}\PYG{p}{,} \PYG{p}{:]}
+            \PYG{n}{JB} \PYG{o}{=} \PYG{n}{pin}\PYG{o}{.}\PYG{n}{computeFrameJacobian}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{model}\PYG{p}{,} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{data}\PYG{p}{,} \PYG{n}{q}\PYG{p}{,} \PYG{n}{idb}\PYG{p}{,} \PYG{n}{pin}\PYG{o}{.}\PYG{n}{ReferenceFrame}\PYG{o}{.}\PYG{n}{LOCAL\PYGZus{}WORLD\PYGZus{}ALIGNED}\PYG{p}{)[:}\PYG{l+m+mi}{3}\PYG{p}{,} \PYG{p}{:]}
+            \PYG{n}{A\PYGZus{}blocks}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{JA} \PYG{o}{\PYGZhy{}} \PYG{n}{JB}\PYG{p}{)}
+
+\end{MintedVerbatim}

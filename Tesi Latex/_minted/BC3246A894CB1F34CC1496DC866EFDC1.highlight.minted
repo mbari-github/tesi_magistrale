@@ -1,0 +1,14 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+
+\PYG{c+c1}{\PYGZsh{} Arm the injector on channel 2 (torque) with an offset fault}
+ros2\PYG{+w}{ }param\PYG{+w}{ }\PYG{n+nb}{set}\PYG{+w}{ }/fault\PYGZus{}injector\PYG{+w}{ }fault\PYGZus{}active\PYG{+w}{ }\PYG{n+nb}{true}
+ros2\PYG{+w}{ }param\PYG{+w}{ }\PYG{n+nb}{set}\PYG{+w}{ }/fault\PYGZus{}injector\PYG{+w}{ }fault\PYGZus{}type\PYG{+w}{ }offset
+ros2\PYG{+w}{ }param\PYG{+w}{ }\PYG{n+nb}{set}\PYG{+w}{ }/fault\PYGZus{}injector\PYG{+w}{ }fault\PYGZus{}magnitude\PYG{+w}{ }\PYG{l+m}{3}.0
+
+\PYG{c+c1}{\PYGZsh{} Switch to a freeze fault without restarting the node}
+ros2\PYG{+w}{ }param\PYG{+w}{ }\PYG{n+nb}{set}\PYG{+w}{ }/fault\PYGZus{}injector\PYG{+w}{ }fault\PYGZus{}type\PYG{+w}{ }freeze
+
+\PYG{c+c1}{\PYGZsh{} Deactivate the fault (return to transparent operation)}
+ros2\PYG{+w}{ }param\PYG{+w}{ }\PYG{n+nb}{set}\PYG{+w}{ }/fault\PYGZus{}injector\PYG{+w}{ }fault\PYGZus{}active\PYG{+w}{ }\PYG{n+nb}{false}
+
+\end{MintedVerbatim}

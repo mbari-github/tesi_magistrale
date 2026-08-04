@@ -1,0 +1,23 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{StateMachine::reset\PYGZus{}safety\PYGZus{}callback}\PYG{p}{(}
+\PYG{+w}{  }\PYG{k}{const}\PYG{+w}{ }\PYG{n}{std}\PYG{o}{::}\PYG{n}{shared\PYGZus{}ptr}\PYG{o}{\PYGZlt{}}\PYG{n}{std\PYGZus{}srvs}\PYG{o}{::}\PYG{n}{srv}\PYG{o}{::}\PYG{n}{Trigger}\PYG{o}{::}\PYG{n}{Request}\PYG{o}{\PYGZgt{}}\PYG{p}{,}
+\PYG{+w}{  }\PYG{n}{std}\PYG{o}{::}\PYG{n}{shared\PYGZus{}ptr}\PYG{o}{\PYGZlt{}}\PYG{n}{std\PYGZus{}srvs}\PYG{o}{::}\PYG{n}{srv}\PYG{o}{::}\PYG{n}{Trigger}\PYG{o}{::}\PYG{n}{Response}\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{n}{response}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+\PYG{+w}{  }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{o}{!}\PYG{n}{safe\PYGZus{}stop\PYGZus{}latched\PYGZus{}}\PYG{+w}{ }\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{+w}{ }\PYG{o}{!}\PYG{n}{fault\PYGZus{}present\PYGZus{}}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{response}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{success}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nb}{true}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{response}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{message}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}No latched fault to reset\PYGZdq{}}\PYG{p}{;}
+\PYG{+w}{    }\PYG{k}{return}\PYG{p}{;}
+\PYG{+w}{  }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{  }\PYG{n}{clear\PYGZus{}fault\PYGZus{}state}\PYG{p}{();}
+
+\PYG{+w}{  }\PYG{k}{const}\PYG{+w}{ }\PYG{k+kt}{bool}\PYG{+w}{ }\PYG{n}{ok}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{request\PYGZus{}state\PYGZus{}change}\PYG{p}{(}
+\PYG{+w}{    }\PYG{n}{SafetyState}\PYG{o}{::}\PYG{n}{FAULT\PYGZus{}MONITOR}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}reset\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{  }\PYG{n}{response}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{success}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{ok}\PYG{p}{;}
+\PYG{+w}{  }\PYG{n}{response}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{message}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{ok}\PYG{+w}{ }\PYG{o}{?}
+\PYG{+w}{    }\PYG{l+s}{\PYGZdq{}Safety reset completed, returned to FAULT\PYGZus{}MONITOR\PYGZdq{}}\PYG{+w}{ }\PYG{o}{:}
+\PYG{+w}{    }\PYG{l+s}{\PYGZdq{}Fault cleared but failed to return to FAULT\PYGZus{}MONITOR\PYGZdq{}}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+
+\end{MintedVerbatim}

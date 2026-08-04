@@ -1,0 +1,11 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+
+\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{counter\PYGZus{}exit\PYGZus{}compliant\PYGZus{}}\PYG{+w}{ }\PYG{o}{\PYGZgt{}=}\PYG{+w}{ }\PYG{n}{downgrade\PYGZus{}count\PYGZus{}threshold\PYGZus{}}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{  }\PYG{n}{counter\PYGZus{}exit\PYGZus{}compliant\PYGZus{}}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{+w}{  }\PYG{n}{fault\PYGZus{}present\PYGZus{}}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nb}{false}\PYG{p}{;}
+\PYG{+w}{  }\PYG{n}{request\PYGZus{}state\PYGZus{}change}\PYG{p}{(}
+\PYG{+w}{    }\PYG{n}{SafetyState}\PYG{o}{::}\PYG{n}{FAULT\PYGZus{}MONITOR}\PYG{p}{,}
+\PYG{+w}{    }\PYG{l+s}{\PYGZdq{}downgrade\PYGZus{}compliant\PYGZus{}to\PYGZus{}nominal\PYGZdq{}}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}}
+
+\end{MintedVerbatim}

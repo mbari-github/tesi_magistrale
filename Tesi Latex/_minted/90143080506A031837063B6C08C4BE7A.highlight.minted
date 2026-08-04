@@ -1,0 +1,25 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{FaultMonitorMode::watchdog\PYGZus{}callback}\PYG{p}{()}
+\PYG{p}{\PYGZob{}}
+\PYG{+w}{  }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{o}{!}\PYG{n}{node\PYGZus{}}\PYG{+w}{ }\PYG{o}{||}\PYG{+w}{ }\PYG{o}{!}\PYG{n}{message\PYGZus{}received\PYGZus{}}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{return}\PYG{p}{;}
+\PYG{+w}{  }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{grace\PYGZus{}period\PYGZus{}active\PYGZus{}}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{return}\PYG{p}{;}
+
+\PYG{+w}{  }\PYG{k}{const}\PYG{+w}{ }\PYG{k+kt}{double}\PYG{+w}{ }\PYG{n}{elapsed}\PYG{+w}{ }\PYG{o}{=}
+\PYG{+w}{    }\PYG{p}{(}\PYG{n}{node\PYGZus{}}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{now}\PYG{p}{()}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{last\PYGZus{}msg\PYGZus{}time\PYGZus{}}\PYG{p}{).}\PYG{n}{seconds}\PYG{p}{();}
+\PYG{+w}{  }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{elapsed}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{n}{status\PYGZus{}timeout\PYGZus{}seconds\PYGZus{}}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{return}\PYG{p}{;}
+\PYG{+w}{  }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{watchdog\PYGZus{}triggered\PYGZus{}}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{return}\PYG{p}{;}
+
+\PYG{+w}{  }\PYG{n}{watchdog\PYGZus{}triggered\PYGZus{}}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nb}{true}\PYG{p}{;}
+\PYG{+w}{  }\PYG{n}{RCLCPP\PYGZus{}ERROR}\PYG{p}{(}\PYG{n}{node\PYGZus{}}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{get\PYGZus{}logger}\PYG{p}{(),}
+\PYG{+w}{    }\PYG{l+s}{\PYGZdq{}FaultMonitorMode watchdog: \PYGZdq{}}
+\PYG{+w}{    }\PYG{l+s}{\PYGZdq{}/exo\PYGZus{}bridge/status timeout (\PYGZpc{}.3fs)\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{elapsed}\PYG{p}{);}
+
+\PYG{+w}{  }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{is\PYGZus{}more\PYGZus{}severe}\PYG{p}{(}\PYG{n}{FaultResponseLevel}\PYG{o}{::}\PYG{n}{SAFE\PYGZus{}STOP}\PYG{p}{,}
+\PYG{+w}{                     }\PYG{n}{last\PYGZus{}requested\PYGZus{}level\PYGZus{}}\PYG{p}{))}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{request\PYGZus{}safe\PYGZus{}stop}\PYG{p}{();}
+\PYG{+w}{    }\PYG{n}{last\PYGZus{}requested\PYGZus{}level\PYGZus{}}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{FaultResponseLevel}\PYG{o}{::}\PYG{n}{SAFE\PYGZus{}STOP}\PYG{p}{;}
+\PYG{+w}{  }\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+
+\end{MintedVerbatim}

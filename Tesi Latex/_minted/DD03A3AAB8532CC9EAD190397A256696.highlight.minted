@@ -1,0 +1,33 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+
+\PYG{k}{def}\PYG{+w}{ }\PYG{n+nf}{\PYGZus{}check\PYGZus{}watchdogs}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{):}
+    \PYG{n}{now} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{get\PYGZus{}clock}\PYG{p}{()}\PYG{o}{.}\PYG{n}{now}\PYG{p}{()}\PYG{o}{.}\PYG{n}{nanoseconds} \PYG{o}{*} \PYG{l+m+mf}{1e\PYGZhy{}9}
+    \PYG{k}{if} \PYG{p}{(}\PYG{n}{now} \PYG{o}{\PYGZhy{}} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{\PYGZus{}start\PYGZus{}time}\PYG{p}{)} \PYG{o}{\PYGZlt{}} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{watchdog\PYGZus{}grace}\PYG{p}{:}
+        \PYG{k}{return}
+
+    \PYG{n}{newly\PYGZus{}dead} \PYG{o}{=} \PYG{p}{[]}
+    \PYG{k}{for} \PYG{n}{ch} \PYG{o+ow}{in} \PYG{n}{ALL\PYGZus{}CHANNELS}\PYG{p}{:}
+        \PYG{n}{last} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{\PYGZus{}last\PYGZus{}rx}\PYG{p}{[}\PYG{n}{ch}\PYG{p}{]}
+        \PYG{k}{if} \PYG{n}{last} \PYG{o+ow}{is} \PYG{k+kc}{None}\PYG{p}{:}
+            \PYG{k}{if} \PYG{n}{ch} \PYG{o+ow}{not} \PYG{o+ow}{in} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{\PYGZus{}dead\PYGZus{}channels}\PYG{p}{:}
+                \PYG{n}{newly\PYGZus{}dead}\PYG{o}{.}\PYG{n}{append}\PYG{p}{((}\PYG{n}{ch}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{1.0}\PYG{p}{))}
+                \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{\PYGZus{}dead\PYGZus{}channels}\PYG{o}{.}\PYG{n}{add}\PYG{p}{(}\PYG{n}{ch}\PYG{p}{)}
+            \PYG{k}{continue}
+        \PYG{n}{age} \PYG{o}{=} \PYG{n}{now} \PYG{o}{\PYGZhy{}} \PYG{n}{last}
+        \PYG{k}{if} \PYG{n}{age} \PYG{o}{\PYGZgt{}} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{watchdog\PYGZus{}timeout}\PYG{p}{:}
+            \PYG{k}{if} \PYG{n}{ch} \PYG{o+ow}{not} \PYG{o+ow}{in} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{\PYGZus{}dead\PYGZus{}channels}\PYG{p}{:}
+                \PYG{n}{newly\PYGZus{}dead}\PYG{o}{.}\PYG{n}{append}\PYG{p}{((}\PYG{n}{ch}\PYG{p}{,} \PYG{n}{age}\PYG{p}{))}
+                \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{\PYGZus{}dead\PYGZus{}channels}\PYG{o}{.}\PYG{n}{add}\PYG{p}{(}\PYG{n}{ch}\PYG{p}{)}
+
+    \PYG{k}{if} \PYG{o+ow}{not} \PYG{n}{newly\PYGZus{}dead}\PYG{p}{:}
+        \PYG{k}{return}
+
+    \PYG{k}{for} \PYG{n}{ch}\PYG{p}{,} \PYG{n}{age} \PYG{o+ow}{in} \PYG{n}{newly\PYGZus{}dead}\PYG{p}{:}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{get\PYGZus{}logger}\PYG{p}{()}\PYG{o}{.}\PYG{n}{error}\PYG{p}{(}
+            \PYG{l+s+sa}{f}\PYG{l+s+s1}{\PYGZsq{}ExoBridge WATCHDOG: channel [}\PYG{l+s+si}{\PYGZob{}}\PYG{n}{ch}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s1}{] \PYGZsq{}}
+            \PYG{l+s+sa}{f}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+si}{\PYGZob{}}\PYG{l+s+s2}{\PYGZdq{}never received\PYGZdq{}}\PYG{+w}{ }\PYG{k}{if}\PYG{+w}{ }\PYG{n}{age}\PYG{+w}{ }\PYG{o}{\PYGZlt{}}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{k}{else}\PYG{+w}{ }\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}dead | age=}\PYG{l+s+si}{\PYGZob{}}\PYG{n}{age}\PYG{l+s+si}{:}\PYG{l+s+s2}{.3f}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{s\PYGZdq{}}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}
+            \PYG{l+s+sa}{f}\PYG{l+s+s1}{\PYGZsq{} \PYGZhy{}\PYGZgt{} SAFE\PYGZus{}STOP\PYGZsq{}}\PYG{p}{)}
+
+    \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{\PYGZus{}request\PYGZus{}safe\PYGZus{}stop}\PYG{p}{()}
+
+\end{MintedVerbatim}

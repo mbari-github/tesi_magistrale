@@ -1,0 +1,13 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+
+\PYG{+w}{    }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{counter\PYGZus{}exit\PYGZus{}torque\PYGZus{}limit\PYGZus{}}\PYG{+w}{ }\PYG{o}{\PYGZpc{}}\PYG{+w}{ }\PYG{l+m+mi}{200}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{o}{\PYGZam{}\PYGZam{}}
+\PYG{+w}{    }\PYG{n}{counter\PYGZus{}exit\PYGZus{}torque\PYGZus{}limit\PYGZus{}}\PYG{+w}{ }\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{  }\PYG{n}{RCLCPP\PYGZus{}INFO}\PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{get\PYGZus{}logger}\PYG{p}{(),}
+\PYG{+w}{    }\PYG{l+s}{\PYGZdq{}Downgrade progress [TORQUE\PYGZus{}LIMIT]: \PYGZpc{}d/\PYGZpc{}d (\PYGZpc{}.1f\PYGZpc{}\PYGZpc{})\PYGZdq{}}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n}{counter\PYGZus{}exit\PYGZus{}torque\PYGZus{}limit\PYGZus{}}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n}{downgrade\PYGZus{}count\PYGZus{}threshold\PYGZus{}}\PYG{p}{,}
+\PYG{+w}{    }\PYG{l+m+mf}{100.0}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n}{counter\PYGZus{}exit\PYGZus{}torque\PYGZus{}limit\PYGZus{}}
+\PYG{+w}{          }\PYG{o}{/}\PYG{+w}{ }\PYG{n}{downgrade\PYGZus{}count\PYGZus{}threshold\PYGZus{}}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}}
+
+\end{MintedVerbatim}

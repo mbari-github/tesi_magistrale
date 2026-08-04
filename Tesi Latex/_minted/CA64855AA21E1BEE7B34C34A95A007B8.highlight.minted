@@ -1,0 +1,24 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+
+    \PYG{n}{p\PYGZus{}now} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{\PYGZus{}M\PYGZus{}eff} \PYG{o}{*} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{\PYGZus{}theta\PYGZus{}dot\PYGZus{}meas}
+
+\PYG{n}{tau\PYGZus{}known} \PYG{o}{=} \PYG{p}{(}
+    \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{\PYGZus{}tau\PYGZus{}m}
+    \PYG{o}{+} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{\PYGZus{}tau\PYGZus{}pass}
+    \PYG{o}{+} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{\PYGZus{}tau\PYGZus{}ext\PYGZus{}meas}
+    \PYG{o}{\PYGZhy{}} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{\PYGZus{}proj}
+    \PYG{o}{\PYGZhy{}} \PYG{n}{tau\PYGZus{}dissipative\PYGZus{}m}
+\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} Inertia variation compensation}
+\PYG{n}{delta\PYGZus{}p\PYGZus{}M} \PYG{o}{=} \PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{\PYGZus{}M\PYGZus{}eff} \PYG{o}{\PYGZhy{}} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{\PYGZus{}M\PYGZus{}eff\PYGZus{}prev}\PYG{p}{)} \PYGZbs{}
+            \PYG{o}{*} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{\PYGZus{}theta\PYGZus{}dot\PYGZus{}meas}
+
+\PYG{c+c1}{\PYGZsh{} Integrator update}
+\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{\PYGZus{}mom\PYGZus{}sigma} \PYG{o}{+=} \PYGZbs{}
+    \PYG{p}{(}\PYG{n}{tau\PYGZus{}known} \PYG{o}{+} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{\PYGZus{}r\PYGZus{}momentum}\PYG{p}{)} \PYG{o}{*} \PYG{n}{dt} \PYG{o}{+} \PYG{n}{delta\PYGZus{}p\PYGZus{}M}
+
+\PYG{c+c1}{\PYGZsh{} Residual}
+\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{\PYGZus{}r\PYGZus{}momentum} \PYG{o}{=} \PYG{n}{K\PYGZus{}mom} \PYG{o}{*} \PYG{p}{(}\PYG{n}{p\PYGZus{}now} \PYG{o}{\PYGZhy{}} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{\PYGZus{}mom\PYGZus{}sigma}\PYG{p}{)}
+
+\end{MintedVerbatim}

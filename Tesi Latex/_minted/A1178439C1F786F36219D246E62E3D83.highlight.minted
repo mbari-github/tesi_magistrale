@@ -1,0 +1,14 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+
+\PYG{n}{innov} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{\PYGZus{}theta\PYGZus{}meas} \PYG{o}{\PYGZhy{}} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{\PYGZus{}theta\PYGZus{}hat}
+
+\PYG{n}{theta\PYGZus{}dot\PYGZus{}hat\PYGZus{}new} \PYG{o}{=} \PYG{p}{(}
+    \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{\PYGZus{}theta\PYGZus{}dot\PYGZus{}hat}
+    \PYG{o}{+} \PYG{n}{dt} \PYG{o}{*} \PYG{p}{(}\PYG{n}{theta\PYGZus{}ddot\PYGZus{}model} \PYG{o}{+} \PYG{n}{l2} \PYG{o}{*} \PYG{n}{innov}\PYG{p}{)}
+\PYG{p}{)}
+\PYG{n}{theta\PYGZus{}hat\PYGZus{}new} \PYG{o}{=} \PYG{p}{(}
+    \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{\PYGZus{}theta\PYGZus{}hat}
+    \PYG{o}{+} \PYG{n}{dt} \PYG{o}{*} \PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{\PYGZus{}theta\PYGZus{}dot\PYGZus{}hat} \PYG{o}{+} \PYG{n}{l1} \PYG{o}{*} \PYG{n}{innov}\PYG{p}{)}
+\PYG{p}{)}
+
+\end{MintedVerbatim}

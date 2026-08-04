@@ -1,0 +1,18 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+
+\PYG{o}{//} \PYG{n}{From} \PYG{n}{TORQUE\PYGZus{}LIMIT\PYGZus{}MODE}
+\PYG{n}{const} \PYG{n+nb}{bool} \PYG{n}{positive} \PYG{o}{=}
+  \PYG{p}{(}\PYG{n}{abs\PYGZus{}tau} \PYG{o}{\PYGZlt{}} \PYG{n}{tau\PYGZus{}torque\PYGZus{}limit\PYGZus{}exit\PYGZus{}}\PYG{p}{)} \PYG{o}{\PYGZam{}\PYGZam{}}
+  \PYG{p}{(}\PYG{n}{abs\PYGZus{}vel} \PYG{o}{\PYGZlt{}} \PYG{n}{vel\PYGZus{}torque\PYGZus{}limit\PYGZus{}exit\PYGZus{}}\PYG{p}{);}
+
+\PYG{k}{if} \PYG{p}{(}\PYG{n}{positive}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+  \PYG{n}{counter\PYGZus{}exit\PYGZus{}torque\PYGZus{}limit\PYGZus{}} \PYG{o}{=} \PYG{n}{std}\PYG{p}{::}\PYG{n+nb}{min}\PYG{p}{(}
+    \PYG{n}{counter\PYGZus{}exit\PYGZus{}torque\PYGZus{}limit\PYGZus{}} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{,}
+    \PYG{n}{downgrade\PYGZus{}count\PYGZus{}threshold\PYGZus{}}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}} \PYG{k}{else} \PYG{p}{\PYGZob{}}
+  \PYG{n}{counter\PYGZus{}exit\PYGZus{}torque\PYGZus{}limit\PYGZus{}} \PYG{o}{=} \PYG{n}{std}\PYG{p}{::}\PYG{n+nb}{max}\PYG{p}{(}
+    \PYG{n}{counter\PYGZus{}exit\PYGZus{}torque\PYGZus{}limit\PYGZus{}} \PYG{o}{\PYGZhy{}} \PYG{n}{downgrade\PYGZus{}negative\PYGZus{}weight\PYGZus{}}\PYG{p}{,}
+    \PYG{l+m+mi}{0}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}}
+
+\end{MintedVerbatim}

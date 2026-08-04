@@ -1,0 +1,8 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+
+\PYG{l+lScalar+lScalarPlain}{string mode}
+\PYG{n+nn}{\PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{l+lScalar+lScalarPlain}{bool success}
+\PYG{l+lScalar+lScalarPlain}{string message}
+
+\end{MintedVerbatim}

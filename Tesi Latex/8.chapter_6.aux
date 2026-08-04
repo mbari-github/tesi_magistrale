@@ -1,0 +1,122 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\def\@LN@column{1}
+\@writefile{toc}{\contentsline {chapter}{\numberline {6}Model-Based Fault Detection: Observer Approach}{91}{chapter.6}\protected@file@percent }
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {section}{\numberline {6.1}Introduction and Scope}{91}{section.6.1}\protected@file@percent }
+\def\@LN@column{1}
+\@writefile{toc}{\contentsline {section}{\numberline {6.2}Theoretical Background}{92}{section.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.1}Observer-Based Residual Generation}{92}{subsection.6.2.1}\protected@file@percent }
+\citation{fault_detection_basic_info}
+\citation{fault_detection_basic_info}
+\citation{Luenberger1964_Observing}
+\def\@LN@column{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.1}{\ignorespaces General architecture of observer-based fault detection and isolation (adapted from \cite  {fault_detection_basic_info}).}}{93}{figure.caption.35}\protected@file@percent }
+\newlabel{fig:FDI_diagram}{{6.1}{93}{General architecture of observer-based fault detection and isolation (adapted from \cite {fault_detection_basic_info})}{figure.caption.35}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.2}Luenberger Observer}{93}{subsection.6.2.2}\protected@file@percent }
+\citation{GMO_FaultDetection}
+\def\@LN@column{1}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.3}Generalized Momentum Observer}{94}{subsection.6.2.3}\protected@file@percent }
+\def\@LN@column{1}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.4}Rate-of-Change Monitoring}{95}{subsection.6.2.4}\protected@file@percent }
+\def\@LN@column{1}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.5}Complementarity of the Four Layers}{96}{subsection.6.2.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6.3}Implementation}{96}{section.6.3}\protected@file@percent }
+\def\@LN@column{1}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.1}Observer 1 - Luenberger State Observer}{97}{subsection.6.3.1}\protected@file@percent }
+\def\@LN@column{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.2}{\ignorespaces Time-series plot showing the Luenberger state residual in response to a step offset injected on the position encoder.}}{98}{figure.caption.36}\protected@file@percent }
+\newlabel{fig:luenberger_residual}{{6.2}{98}{Time-series plot showing the Luenberger state residual in response to a step offset injected on the position encoder}{figure.caption.36}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.2}Observer 2 - Admittance Inversion}{98}{subsection.6.3.2}\protected@file@percent }
+\def\@LN@column{1}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.3}Observer 3 - Generalized Momentum Observer}{99}{subsection.6.3.3}\protected@file@percent }
+\def\@LN@column{1}
+\def\@LN@column{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.3}{\ignorespaces Time-series plot comparing the momentum residual and the Luenberger state residual in response to a step offset fault on the external user force sensor.}}{101}{figure.caption.37}\protected@file@percent }
+\newlabel{fig:momentum_vs_luenberger}{{6.3}{101}{Time-series plot comparing the momentum residual and the Luenberger state residual in response to a step offset fault on the external user force sensor}{figure.caption.37}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.4}Guard 4 - Rate-of-Change Monitor}{101}{subsection.6.3.4}\protected@file@percent }
+\def\@LN@column{1}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.5}Residual Filtering and Diagnostic Output}{102}{subsection.6.3.5}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6.4}{\ignorespaces Multi-panel time-series plot showing the four residual signals simultaneously during a fault injection experiment. Panel (a): Luenberger state residual (raw and EMA-filtered). Panel (b): admittance inversion torque residual (with obs2\_valid shading). Panel (c): momentum residual. Panel (d): rate-of-change alarm (binary).}}{102}{figure.caption.38}\protected@file@percent }
+\newlabel{fig:multipanel_residuals}{{6.4}{102}{Multi-panel time-series plot showing the four residual signals simultaneously during a fault injection experiment. Panel (a): Luenberger state residual (raw and EMA-filtered). Panel (b): admittance inversion torque residual (with obs2\_valid shading). Panel (c): momentum residual. Panel (d): rate-of-change alarm (binary)}{figure.caption.38}{}}
+\gdef \LT@iv {\LT@entry 
+    {1}{89.72401pt}\LT@entry 
+    {1}{83.19458pt}\LT@entry 
+    {1}{83.19458pt}\LT@entry 
+    {1}{83.19458pt}\LT@entry 
+    {1}{83.19458pt}}
+\def\@LN@column{1}
+\@writefile{toc}{\contentsline {section}{\numberline {6.4}Sensor Health Assessment}{103}{section.6.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4.1}Fault Sensitivity Mapping}{103}{subsection.6.4.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6.1}{\ignorespaces Fault sensitivity matrix: residual latencies for different observer types and fault channels.}}{103}{table.caption.39}\protected@file@percent }
+\newlabel{tab:observer_latencies}{{6.1}{103}{Fault sensitivity matrix: residual latencies for different observer types and fault channels}{table.caption.39}{}}
+\def\@LN@column{1}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4.2}Detection Latency Spectrum}{104}{subsection.6.4.2}\protected@file@percent }
+\def\@LN@column{1}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4.3}Nominal Residual Behavior}{105}{subsection.6.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6.5}Current Status and Integration Outlook}{105}{section.6.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5.1}Current Status}{105}{subsection.6.5.1}\protected@file@percent }
+\def\@LN@column{1}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5.2}What Is Missing for Integration}{106}{subsection.6.5.2}\protected@file@percent }
+\def\@LN@column{1}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5.3}Integration Path: SENSOR\_DEGRADED\_MODE}{107}{subsection.6.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5.4}Directions for Improvement}{107}{subsection.6.5.4}\protected@file@percent }
+\def\@LN@column{1}
+\@writefile{toc}{\contentsline {section}{\numberline {6.6}Summary}{108}{section.6.6}\protected@file@percent }
+\def\@LN@column{1}
+\@setckpt{8.chapter_6}{
+\setcounter{page}{110}
+\setcounter{equation}{9}
+\setcounter{enumi}{3}
+\setcounter{enumii}{0}
+\setcounter{enumiii}{0}
+\setcounter{enumiv}{0}
+\setcounter{footnote}{0}
+\setcounter{mpfootnote}{0}
+\setcounter{FancyVerbLine}{5}
+\setcounter{part}{0}
+\setcounter{chapter}{6}
+\setcounter{section}{6}
+\setcounter{subsection}{0}
+\setcounter{subsubsection}{0}
+\setcounter{paragraph}{0}
+\setcounter{subparagraph}{0}
+\setcounter{figure}{4}
+\setcounter{table}{2}
+\setcounter{SDpage}{0}
+\setcounter{NumberSD}{0}
+\setcounter{tomo}{0}
+\setcounter{parentequation}{0}
+\setcounter{r@tfl@t}{1}
+\setcounter{caption@flags}{2}
+\setcounter{continuedfloat}{0}
+\setcounter{KVtest}{0}
+\setcounter{subfigure}{0}
+\setcounter{subfigure@save}{2}
+\setcounter{lofdepth}{1}
+\setcounter{subtable}{0}
+\setcounter{subtable@save}{0}
+\setcounter{lotdepth}{1}
+\setcounter{LT@tables}{4}
+\setcounter{LT@chunks}{1}
+\setcounter{lstnumber}{1}
+\setcounter{float@type}{32}
+\setcounter{listing}{0}
+\setcounter{linenumber}{1}
+\setcounter{LN@truepage}{119}
+\setcounter{FancyVerbWriteLine}{0}
+\setcounter{FancyVerbBufferLine}{27}
+\setcounter{FV@TrueTabGroupLevel}{0}
+\setcounter{FV@TrueTabCounter}{0}
+\setcounter{FV@HighlightLinesStart}{0}
+\setcounter{FV@HighlightLinesStop}{0}
+\setcounter{FancyVerbLineBreakLast}{2}
+\setcounter{FV@BreakBufferDepth}{0}
+\setcounter{minted@FancyVerbLineTemp}{0}
+\setcounter{section@level}{0}
+\setcounter{Item}{14}
+\setcounter{Hfootnote}{0}
+\setcounter{bookmark@seq@number}{109}
+\setcounter{lstlisting}{0}
+}

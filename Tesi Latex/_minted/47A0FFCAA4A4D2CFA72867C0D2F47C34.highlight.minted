@@ -1,0 +1,13 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+
+    \PYG{n}{sol} \PYG{o}{=} \PYG{n}{least\PYGZus{}squares}\PYG{p}{(}
+        \PYG{n}{residuals}\PYG{p}{,}
+        \PYG{n}{x0}\PYG{p}{,}
+        \PYG{n}{method}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}trf\PYGZsq{}}\PYG{p}{,}
+        \PYG{n}{bounds}\PYG{o}{=}\PYG{p}{(}\PYG{n}{lower}\PYG{p}{,} \PYG{n}{upper}\PYG{p}{),}
+        \PYG{n}{xtol}\PYG{o}{=}\PYG{l+m+mf}{1e\PYGZhy{}8}\PYG{p}{,}
+        \PYG{n}{ftol}\PYG{o}{=}\PYG{l+m+mf}{1e\PYGZhy{}8}\PYG{p}{,}
+        \PYG{n}{gtol}\PYG{o}{=}\PYG{l+m+mf}{1e\PYGZhy{}8}
+    \PYG{p}{)}
+
+\end{MintedVerbatim}

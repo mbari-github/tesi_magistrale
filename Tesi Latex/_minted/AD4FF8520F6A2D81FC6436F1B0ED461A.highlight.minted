@@ -1,0 +1,12 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+
+    \PYG{c+c1}{\PYGZsh{} Given theta (crank angle)}
+    \PYG{n}{q}\PYG{p}{[}\PYG{n}{idx\PYGZus{}theta}\PYG{p}{]} \PYG{o}{=} \PYG{n}{theta}
+
+    \PYG{c+c1}{\PYGZsh{} Solve loop\PYGZhy{}closure constraints}
+    \PYG{n}{sol} \PYG{o}{=} \PYG{n}{least\PYGZus{}squares}\PYG{p}{(}\PYG{o}{...}\PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} Reconstruct full configuration}
+    \PYG{n}{q\PYGZus{}consistent} \PYG{o}{=} \PYG{n}{q}\PYG{o}{.}\PYG{n}{copy}\PYG{p}{()}
+
+\end{MintedVerbatim}

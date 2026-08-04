@@ -1,0 +1,26 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+
+\PYG{+w}{    }\PYG{l+lScalar+lScalarPlain}{builtin\PYGZus{}interfaces/Time stamp}
+
+\PYG{+w}{    }\PYG{l+lScalar+lScalarPlain}{string  state}
+\PYG{+w}{    }\PYG{l+lScalar+lScalarPlain}{int32   state\PYGZus{}id}
+
+\PYG{+w}{    }\PYG{l+lScalar+lScalarPlain}{bool    safe\PYGZus{}stop\PYGZus{}latched}
+\PYG{+w}{    }\PYG{l+lScalar+lScalarPlain}{bool    fault\PYGZus{}present}
+\PYG{+w}{    }\PYG{l+lScalar+lScalarPlain}{string  last\PYGZus{}fault\PYGZus{}reason}
+
+\PYG{+w}{    }\PYG{l+lScalar+lScalarPlain}{bool    automatic\PYGZus{}downgrade\PYGZus{}enabled}
+
+\PYG{+w}{    }\PYG{l+lScalar+lScalarPlain}{int32   counter\PYGZus{}exit\PYGZus{}compliant}
+\PYG{+w}{    }\PYG{l+lScalar+lScalarPlain}{int32   counter\PYGZus{}exit\PYGZus{}torque\PYGZus{}limit}
+\PYG{+w}{    }\PYG{l+lScalar+lScalarPlain}{int32   downgrade\PYGZus{}threshold}
+\PYG{+w}{    }\PYG{l+lScalar+lScalarPlain}{float64 downgrade\PYGZus{}progress\PYGZus{}compliant}
+\PYG{+w}{    }\PYG{l+lScalar+lScalarPlain}{float64 downgrade\PYGZus{}progress\PYGZus{}torque\PYGZus{}limit}
+
+\PYG{+w}{    }\PYG{l+lScalar+lScalarPlain}{bool    bridge\PYGZus{}alive}
+\PYG{+w}{    }\PYG{l+lScalar+lScalarPlain}{bool    bridge\PYGZus{}mode\PYGZus{}coherent}
+
+\PYG{+w}{    }\PYG{l+lScalar+lScalarPlain}{builtin\PYGZus{}interfaces/Time last\PYGZus{}transition\PYGZus{}time}
+\PYG{+w}{    }\PYG{l+lScalar+lScalarPlain}{string  last\PYGZus{}transition\PYGZus{}reason}
+
+\end{MintedVerbatim}

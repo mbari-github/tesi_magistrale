@@ -1,0 +1,12 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{StateMachine::latch\PYGZus{}fault}\PYG{p}{(}\PYG{k}{const}\PYG{+w}{ }\PYG{n}{std}\PYG{o}{::}\PYG{n}{string}\PYG{+w}{ }\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{n}{reason}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{safe\PYGZus{}stop\PYGZus{}latched\PYGZus{}}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nb}{true}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{fault\PYGZus{}present\PYGZus{}}\PYG{+w}{     }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nb}{true}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{last\PYGZus{}fault\PYGZus{}reason\PYGZus{}}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{reason}\PYG{p}{;}
+\PYG{+w}{    }\PYG{n}{RCLCPP\PYGZus{}ERROR}\PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{get\PYGZus{}logger}\PYG{p}{(),}
+\PYG{+w}{    }\PYG{l+s}{\PYGZdq{}Fault latched | reason=\PYGZpc{}s\PYGZdq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{reason}\PYG{p}{.}\PYG{n}{c\PYGZus{}str}\PYG{p}{());}
+\PYG{p}{\PYGZcb{}}
+
+\end{MintedVerbatim}

@@ -1,0 +1,7 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+
+\PYG{+w}{    }\PYG{k}{const}\PYG{+w}{ }\PYG{k}{auto}\PYG{+w}{ }\PYG{n}{tau\PYGZus{}level}\PYG{+w}{     }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{evaluate\PYGZus{}tau\PYGZus{}entry}\PYG{p}{(}\PYG{n}{tau\PYGZus{}in}\PYG{p}{);}
+\PYG{+w}{    }\PYG{k}{const}\PYG{+w}{ }\PYG{k}{auto}\PYG{+w}{ }\PYG{n}{vel\PYGZus{}level}\PYG{+w}{     }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{evaluate\PYGZus{}velocity\PYGZus{}entry}\PYG{p}{(}\PYG{n}{theta\PYGZus{}dot}\PYG{p}{);}
+\PYG{+w}{    }\PYG{k}{const}\PYG{+w}{ }\PYG{k}{auto}\PYG{+w}{ }\PYG{n}{instantaneous}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{max\PYGZus{}level}\PYG{p}{(}\PYG{n}{tau\PYGZus{}level}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{vel\PYGZus{}level}\PYG{p}{);}
+
+\end{MintedVerbatim}

@@ -1,0 +1,30 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+
+\PYG{k+kt}{bool}\PYG{+w}{ }\PYG{n+nf}{StateMachine::request\PYGZus{}state\PYGZus{}change}\PYG{p}{(}
+\PYG{+w}{  }\PYG{n}{SafetyState}\PYG{+w}{ }\PYG{n}{target\PYGZus{}state}\PYG{p}{,}
+\PYG{+w}{  }\PYG{k}{const}\PYG{+w}{ }\PYG{n}{std}\PYG{o}{::}\PYG{n}{string}\PYG{+w}{ }\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{n}{reason}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+\PYG{+w}{  }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{transition\PYGZus{}in\PYGZus{}progress\PYGZus{}}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{RCLCPP\PYGZus{}WARN}\PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{get\PYGZus{}logger}\PYG{p}{(),}
+\PYG{+w}{      }\PYG{l+s}{\PYGZdq{}Transition rejected: already in progress\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{    }\PYG{k}{return}\PYG{+w}{ }\PYG{n+nb}{false}\PYG{p}{;}
+\PYG{+w}{  }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{  }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{o}{!}\PYG{n}{can\PYGZus{}transition\PYGZus{}to}\PYG{p}{(}\PYG{n}{target\PYGZus{}state}\PYG{p}{))}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{RCLCPP\PYGZus{}WARN}\PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{get\PYGZus{}logger}\PYG{p}{(),}
+\PYG{+w}{      }\PYG{l+s}{\PYGZdq{}Transition rejected: \PYGZpc{}s \PYGZhy{}\PYGZgt{} \PYGZpc{}s | reason=\PYGZpc{}s\PYGZdq{}}\PYG{p}{,}
+\PYG{+w}{      }\PYG{n}{state\PYGZus{}to\PYGZus{}string}\PYG{p}{(}\PYG{n}{current\PYGZus{}state\PYGZus{}}\PYG{p}{).}\PYG{n}{c\PYGZus{}str}\PYG{p}{(),}
+\PYG{+w}{      }\PYG{n}{state\PYGZus{}to\PYGZus{}string}\PYG{p}{(}\PYG{n}{target\PYGZus{}state}\PYG{p}{).}\PYG{n}{c\PYGZus{}str}\PYG{p}{(),}
+\PYG{+w}{      }\PYG{n}{reason}\PYG{p}{.}\PYG{n}{c\PYGZus{}str}\PYG{p}{());}
+\PYG{+w}{    }\PYG{k}{return}\PYG{+w}{ }\PYG{n+nb}{false}\PYG{p}{;}
+\PYG{+w}{  }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{  }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{target\PYGZus{}state}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{n}{SafetyState}\PYG{o}{::}\PYG{n}{SAFE\PYGZus{}STOP}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{n}{latch\PYGZus{}fault}\PYG{p}{(}\PYG{n}{reason}\PYG{p}{);}
+\PYG{+w}{  }\PYG{p}{\PYGZcb{}}
+
+\PYG{+w}{  }\PYG{n}{reset\PYGZus{}downgrade\PYGZus{}counters}\PYG{p}{();}
+\PYG{+w}{  }\PYG{k}{return}\PYG{+w}{ }\PYG{n}{change\PYGZus{}state}\PYG{p}{(}\PYG{n}{state\PYGZus{}to\PYGZus{}plugin\PYGZus{}name}\PYG{p}{(}\PYG{n}{target\PYGZus{}state}\PYG{p}{),}\PYG{+w}{ }\PYG{n}{reason}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}}
+
+\end{MintedVerbatim}
